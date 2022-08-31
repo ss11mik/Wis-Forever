@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Předměty</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/courses.php.cs.html.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/reg.php.cs.html">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/Wis-Forever/FIT/st/logoff.php.cs.html?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Předměty</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">31. srpna 2022
+ 13:37:40</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p><ul class="sbb">
+<li><a class="sbtn" href="/Wis-Forever/FIT/st/news-c.php.cs.html">Aktuální termíny</a><div>Přehled aktuálních termínů, obhajob, zkoušek, apod.</div>
+</li><li><a class="sbtn" href="/Wis-Forever/FIT/st/study-v.php.cs.html">Aktuální předměty a termíny</a><div>Termíny, dokumenty, dotazníky, diskusní fóra. <a style="display: inline-block; color:white; background-color: orange; padding: 0px 6px; text-decoration: none" href="/Wis-Forever/FIT/st/get-coursesx.php?sem=L">XML</a> <a style="display: inline-block; color:white; background-color: orange; padding: 0px 6px; text-decoration: none" href="/Wis-Forever/FIT/st/get-coursesx.php?json=1&amp;sem=L">JSON</a></div></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/studygs-l.php.cs.html?rok=2021&amp;sem=L">Rozvrh na letní semestr 2021/2022</a><div>Rozvrhy přednáškových skupin a místností.</div></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/studyps-l.php.cs.html">Osobní rozvrh 2021/2022</a><div>Rozvrh podle zapsaných předmětů.</div></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/studygs-l.php.cs.html?rok=2022&amp;sem=Z">Předběžný rozvrh na zimní sem. 2022/2023</a></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/studygs-l.php.cs.html?rok=2022&amp;sem=L">Předběžný rozvrh na letní sem. 2022/2023</a></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/phorum-sm.php.cs.html">Diskusní fóra</a><div>Diskusní fóra k předmětům.</div></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/cfs.php.cs.html?file=/course/">Sklad dokumentů k předmětům</a><div>Slajdy, studijní opory, podklady ke cvičením.</div></li><li><a class="sbtn" href="/Wis-Forever/FIT/st/course-h2.php.cs.html">Výsledky hodnocení výuky studenty</a><div>Statistické vyhodnocení dotazníků.</div></li></ul></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
