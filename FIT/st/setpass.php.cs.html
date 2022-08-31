@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>FIT password change</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/setpass.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>FIT password change</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:43:43</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p><p><b>Vyberte si některé z níže nabídnutých hesel (malá/velká můžete změnit):</b></p><table cellspacing="0" cellpadding="4" border="0"><tbody><tr><td><tt>oorooy9Ahv</tt></td><td><tt>Aegith6Pie</tt></td><td><tt>Air4oPheiv</tt></td><td><tt>OCa1ini0Do</tt></td><td><tt>aed9Ookeir</tt></td></tr>
+<tr><td><tt>ahngei9Ibe</tt></td><td><tt>Ahpei0thic</tt></td><td><tt>iSagh6ni2A</tt></td><td><tt>Aiy3reiyah</tt></td><td><tt>jae6iedeiY</tt></td></tr>
+<tr><td><tt>oghool3Puu</tt></td><td><tt>thai9Iejoh</tt></td><td><tt>riighuN3xe</tt></td><td><tt>ughie2Eish</tt></td><td><tt>CheeN4noy8</tt></td></tr>
+<tr><td><tt>Iviz3ohiph</tt></td><td><tt>XaeTieT9ue</tt></td><td><tt>Joogh7xohy</tt></td><td><tt>ke4eeMee9u</tt></td><td><tt>iex6Quohth</tt></td></tr>
+<tr><td><tt>ahH3Iereis</tt></td><td><tt>FiBeeThuu3</tt></td><td><tt>AhDubai2hu</tt></td><td><tt>ui6Fufaesh</tt></td><td><tt>aeBioghae3</tt></td></tr>
+<tr><td><tt>Eiz7eevahc</tt></td><td><tt>aD9okey3pe</tt></td><td><tt>jotoTogh8v</tt></td><td><tt>caez2pohSe</tt></td><td><tt>ieF4eiMooy</tt></td></tr>
+<tr><td><tt>XeT4thieph</tt></td><td><tt>pooSequ0Zi</tt></td><td><tt>aKoo4ig6wi</tt></td><td><tt>Ir7ech1ije</tt></td><td><tt>ideo2Boipa</tt></td></tr>
+<tr><td><tt>ohyai9GohP</tt></td><td><tt>Huce3queu9</tt></td><td><tt>koh8baib1I</tt></td><td><tt>Ahw9edai0x</tt></td><td><tt>pho0bonaCh</tt></td></tr>
+</tbody></table><form action="/Wis-Forever/FIT/st/setpass.php.cs" method="post" name="setpwd" enctype="multipart/form-data" autocomplete="off"><p><label for="len">Délka hesla: <select name="len">
+<option value="10" selected="selected">10 znaků</option><option value="11">11 znaků</option><option value="12">12 znaků</option><option value="13">13 znaků</option><option value="14">14 znaků</option><option value="15">15 znaků</option><option value="16">16 znaků</option></select><input name="pwd1" style="display: none" value="dummy1" type="password">
+<input name="pwd2" style="display: none" value="dummy2" type="password">
+<input name="pwd3" style="display: none" value="dummy3" type="password">
+</label></p><p><label for="newpwd">Nové heslo:</label> <input name="newpwd" size="16" autocomplete="new-password" type="password"></p><p><b>Pozor!</b> Než nové heslo nastavíte, pečlivě si je zapište a uchovejte do doby, než je bezpečně budete znát zpaměti.</p><p><input name="reset" value="Vygenerovat hesla" type="submit"> <input name="set" value="Nastavit" type="submit"></p></form><p><a href="/Wis-Forever/FIT/st/admin.php.cs.html">Zpět na index</a></p><p></p></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+
+</body></html>
