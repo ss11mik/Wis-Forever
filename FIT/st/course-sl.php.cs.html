@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>IJA - Seminář Java</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var xmlreq;
+var xmlinit;
+var xmlrun;
+var xmltid;
+var cslc;
+function scsl(fid)
+{
+    cslc = fid;
+    return true;
+}
+function csl_sub(vars)
+{
+    var uri = '/Wis-Forever/FIT/st/FIT/st/course-sl.php.cs.html?xml=35373e522d7da5b3635dcf57d14aa99151fb693c,1653731127&'+vars;
+    if (!cslc) return true;
+    if (cslc.substr(0,3) == 'lof' && !confirm('Určitě chcete zrušit registraci tohoto termínu?')) return false;
+    if (!xmlinit) {
+	xmlinit = true;
+	if (window.XMLHttpRequest) {
+	    try { xmlreq = new XMLHttpRequest(); } catch (e) { }
+	} else 
+	if (window.ActiveXObject) {
+	    try { xmlreq = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) { 
+		try { xmlreq = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) { }
+	    }
+	}
+    }
+    if (!xmlreq) return true;
+    if (xmlrun || xmlreq.readyState == 2 || xmlreq.readyState == 3) {
+	return false;
+    }
+    uri += '&' + cslc + '=xml';
+    cslc = '';
+    xmlrun = true;
+    xmlreq.open('GET', uri, true);
+    if (typeof(xmlreq.ontimeout) == 'function') {
+	xmlreq.timeout = 3000;
+	xmlreq.ontimeout = xml_timeout;
+    } else {
+	if (xmltid) window.clearTimeout(xmltid);
+	xmltid = window.setTimeout('xml_timeout()', 3000);
+    }
+    xmlreq.onreadystatechange = xml_finish;
+    if (xmlreq.overrideMimeType) xmlreq.overrideMimeType('text/xml');
+    xmlreq.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    window.status = 'XML http request sent...';
+    xmlreq.send(null);
+    return false;
+}
+function xml_timeout()
+{
+    window.status = 'XML http request failed!';
+    if (xmltid) {
+	xmltid = 0;
+	if (xmlrun) {
+	    xmlrun = false;
+	    xmlreq.abort();
+	}
+    } else {
+	xmlrun = false;
+    }
+    xmlreq = null;
+}
+function xml_finish()
+{
+    var id,i,c,cur,stat;
+    if (!xmlrun || xmlreq.readyState != 4) return;
+    if (xmltid) {
+	window.clearTimeout(xmltid);
+	xmltid = 0;
+    }
+    xmlrun = false;
+    if (xmlreq.status != 200 && xmlreq.status != 304) return;
+    window.status = 'XML http response received...';
+    var tms = (new Date).getTime();
+    var items = xmlreq.responseXML.getElementsByTagName("item");
+    if (items.length == 0) {
+	var err = xmlreq.responseXML.getElementsByTagName("error");
+	if (err.length == 1) {
+	    alert(err[0].firstChild.nodeValue);
+	}
+    }
+    for (i = 0; i < items.length; i++) {
+	id = items[i].getAttribute('id');
+	if (!id) continue;
+	c = document.getElementById('csl_'+id);
+	if (!c) continue;
+	if (items[i].firstChild && items[i].firstChild.length > 10) {
+	    c.innerHTML = items[i].firstChild.nodeValue;
+	}
+	cur = items[i].getAttribute('cur');
+	if (cur != null) {
+	    c.nextSibling.innerHTML = cur;
+	}
+	stat = items[i].getAttribute('stat');
+	if (!stat) continue;
+	if (stat == 2) c.parentNode.bgColor = "#FFF8DC";
+	else
+	if (stat == 3) c.parentNode.bgColor = "#dfe7cf";
+    }
+    while ((new Date).getTime() -  tms < 200) i++;
+    window.status = 'XML http update done';
+}
+</script>
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/course-sl.php.en?id=767927">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>IJA - Seminář Java</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:45:37</div></td></tr></tbody></table>
+<div role="main" class="content">
+<b>Typ:</b> povinně volitelný
+<b>Kredity</b>: 4
+<b>Ukončení:</b> Zá <b>Fakulta:</b>&nbsp;FIT<br>
+<b>Zápočet:</b> ano (97 bodů), <a href="http://www.fit.vut.cz/%7Emalinka/.cs">Malinka Kamil, Mgr., Ph.D.</a>, 2022-05-31<p><b>Studijní materiály</b></p><ul class="nomargin"><li><a href="https://www.fit.vut.cz/study/course/244847/.cs">Karta předmětu</a> </li><li><a href="/Wis-Forever/FIT/st/cfs.php.cs.html?file=/course/IJA-IT&amp;cid=14649">Soubory k předmětu</a></li><li><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?id=14649&amp;csid=767927">Wiki stránky předmětu</a></li></ul><table class="tfixed"><tbody><tr><td><ul><li><a href="https://moodle.vut.cz/course/view.php?id=244847">Elearning IS VUT (Moodle)</a> - informace k předmětu (zadání úkolů a projektu, studijní materiály, aktuální informace, fóra apod.)</li></ul></td></tr></tbody></table><h3>Skupiny týmů</h3><div class="table-holder"><table cellspacing="0" cellpadding="2" bordercolor="#999999" border="1"><tbody><tr bgcolor="#ADD8E6"><th>Skupina</th><th>Max.<br>týmů</th><th>Max.<br>stud</th><th>Začátek zakládání</th><th>Konec zakládání</th><th>Začátek přihlašování</th><th>Konec přihlašování</th></tr><tr bgcolor="#FFF8DC"><td class="dataquery"><a class="bar" href="/cgroup.php.cs?id=163"><b>Projekt</b></a></td><td class="dataquery" align="center">100</td><td class="dataquery" align="center">3</td><td class="dataquery">2022-02-09 11:02:00</td><td class="dataquery">2022-03-03 23:59:59</td><td class="dataquery">2022-03-04 12:00:00</td><td class="dataquery">2022-03-04 20:00:00</td></tr></tbody></table></div><h3>Termíny a hodnocení</h3>
+<form method="get" action="/Wis-Forever/FIT/st/FIT/st/course-sl.php.cs.html" name="csl" onsubmit="return csl_sub('id=767927');">
+<input name="id" value="767927" type="hidden">
+<input name="token" value="35373e522d7da5b3635dcf57d14aa99151fb693c,1653731127" type="hidden">
+<div class="table-holder"><table cellspacing="0" cellpadding="2" bordercolor="#999999" border="1"><tbody><tr bgcolor="#ADD8E6"><th>#</th><th>Datum</th><th>Popis</th><th>Typ</th><th>Přihlášen</th><th>Min</th><th>Max</th><th>Body</th><th>Dne</th></tr>
+<tr valign="top" bgcolor="#FFF8DC"><th align="right">-</th><td class="dataquery" nowrap="nowrap">2022-04-29</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=89192"><b>Prezentace projektu</b></a></td><td class="dataquery">stud</td><td class="dataquery" id="csl_89192"><i>konec přihlašování<br>2022-04-29</i></td><td class="dataquery" align="right">-</td><td class="dataquery" align="right">-</td><td class="dataquery" align="right">&nbsp;</td><td class="dataquery" nowrap="nowrap">&nbsp;</td></tr>
+<tr valign="top" bgcolor="#FFF8DC"><th align="right">-</th><td class="dataquery" nowrap="nowrap">2022-06-03</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=89395"><b>opravná prezentace projektu</b></a></td><td class="dataquery">stud</td><td class="dataquery" id="csl_89395"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=89395#varianty"><b>přihlašování končí</b></a><br>2022-06-03 00:00:00</td><td class="dataquery" align="right">-</td><td class="dataquery" align="right">-</td><td class="dataquery" align="right">&nbsp;</td><td class="dataquery" nowrap="nowrap">&nbsp;</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><th align="right">10</th><td class="dataquery" nowrap="nowrap">2022-03-14</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=87985"><b>Úkol 1</b></a></td><td class="dataquery">auto</td><td class="dataquery" id="csl_87985"><span style="color:#008f00"><b>ano</b></span></td><td class="dataquery" align="right"><span class="green">1</span></td><td class="dataquery" align="right">5</td><td class="dataquery" align="right"><b>5</b></td><td class="dataquery" nowrap="nowrap">2022-03-15</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><th align="right">20</th><td class="dataquery" nowrap="nowrap">2022-03-15</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=87986"><b>Úkol 2</b></a></td><td class="dataquery">auto</td><td class="dataquery" id="csl_87986"><span style="color:#008f00"><b>ano</b></span></td><td class="dataquery" align="right"><span class="green">1</span></td><td class="dataquery" align="right">5</td><td class="dataquery" align="right"><b>5</b></td><td class="dataquery" nowrap="nowrap">2022-03-30</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><th align="right">25</th><td class="dataquery" nowrap="nowrap">2022-04-13</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=88083"><b>Úkol 3</b></a></td><td class="dataquery">auto</td><td class="dataquery" id="csl_88083"><span style="color:#008f00"><b>ano</b></span></td><td class="dataquery" align="right"><span class="green">1</span></td><td class="dataquery" align="right">10</td><td class="dataquery" align="right"><b>10</b></td><td class="dataquery" nowrap="nowrap">2022-05-04</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><th align="right">30</th><td class="dataquery" nowrap="nowrap">2022-05-08</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=87987"><b>Projekt</b></a></td><td class="dataquery">auto</td><td class="dataquery" id="csl_87987"><span style="color:#008f00"><b>ano</b></span></td><td class="dataquery" align="right"><span class="green">40</span></td><td class="dataquery" align="right">80</td><td class="dataquery" align="right"><b>77</b></td><td class="dataquery" nowrap="nowrap">2022-05-16</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><th align="right">40</th><td class="dataquery" nowrap="nowrap">2022-05-31</td><td class="dataquery"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;item=87988"><b>Zápočet</b></a></td><td class="dataquery">auto</td><td class="dataquery" id="csl_87988"><span style="color:#008f00"><b>ano</b></span></td><td class="dataquery" align="right"><span class="green">50</span></td><td class="dataquery" align="right">-</td><td class="dataquery" align="right"><span style="color:#008f00">(97)</span></td><td class="dataquery" nowrap="nowrap">&nbsp;</td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="6" align="left">Celkem</th><td class="dataquery" align="right">100</td><th align="right" nowrap="nowrap">97</th><td>&nbsp;</td></tr>
+</tbody></table></div>
+</form><div class="maxw8">Podmínkou udělení zápočtu je dosažení hranice bodů Min ve všech termínech s uvedeným Min.</div><h4>Histogram bodového hodnocení předmětu</h4><img class="w100" src="/foo_stats/course-g.png" alt=""></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
