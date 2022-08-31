@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Informační systém FIT</title>
+<link rel="SHORTCUT ICON" href="/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stabs" href="/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem"><a class="stab" href="/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stab" href="/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem hide-m"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/index.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Informační systém FIT</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:41:38</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<br><b>Poslední přístup:</b> 2022-05-28 11:08:08 z IP adresy 1.1.1.1<ul class="sbb"><li><a tabindex="2" class="sbtn" href="/FIT/st/studnews.php.cs.html">Studijní aktuality</a><div>Aktuální informace, oznámení.</div></li><li><a tabindex="5" class="sbtn" href="/FIT/st/study.php.cs.html">Studia</a><div>Přehled studia, volba studia, zápis, žádosti a řízení.</div></li><li><a tabindex="6" class="sbtn" href="/FIT/st/courses.php.cs.html">Předměty</a><div>
+Předměty, rozvrhy, potvrzování výsledků studia.</div></li><li><a tabindex="7" class="sbtng" href="/FIT/st/study-v.php.cs.html">Aktuální zapsané předměty a termíny</a><div>Termíny, dokumenty, dotazníky, diskusní fóra.</div></li><li><a tabindex="9" class="sbtng" href="/reg.php.cs">Registrace předmětů</a><div>Registrace předmětů, projektové praxe a závěrečné práce.</div></li><li><a tabindex="10" class="sbtn" href="/FIT/st/admin.php.cs.html">Účty a hesla</a><div>Správa různých účtů, emaily, osobní údaje, identifikační karty.</div></li><li><a tabindex="11" class="sbtn" href="/FIT/st/other.php.cs.html">Ostatní</a><div>Registrace na akce, FTP klient, obsazení počítačů a formuláře.</div></li><li><a tabindex="12" class="sbtn" href="/logoff.php.cs?logoff=1">Odhlásit z IS FIT</a></li></ul><br></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
