@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Informační systém FIT</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+
+<style type="text/css">
+.logo {
+	float: right; margin: 4px; width: 350px; max-width: 100%;
+}
+.info {
+	max-width: 600px;
+}
+h1 {
+	font-size: 24px;
+}
+@media (max-width: 799px) {
+.logo { float: none; }
+}
+</style>
+
+</head>
+<body>
+<table class="noprint" style="background-color: #00a9e0" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td valign="middle" align="right">&nbsp;<a style="color:white; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/index.php.en">english</a>&nbsp;</td></tr>
+</tbody></table>
+<div role="main" class="content">
+<img class="logo" src="/Wis-Forever/images/fitnewb.png" alt="[logo]">
+<h1>Informační systém FIT</h1>
+
+<div class="info">
+<b>Přístup do informačního systému FIT je povolen pouze oprávněným
+uživatelům</b>.
+Komunikace je chráněna šifrovaným kanálem TLS &gt;= 1.0. Přístup starším
+protokolem SSLv3 není povolen. Doporučeným prohlížečem je Firefox, Safari nebo Chrome.
+<!-- <p>
+Certifikát serveru <b>wis.fit.vutbr.cz</b> je podepsán <a href="https://ca.vutbr.cz/">certifikační autoritou VUT</a> - pokud nemáte její certifikát 
+nainstalován, <a href="http://ca.vutbr.cz/pki/pub/policy.html#navody">nainstalujte si jej</a> (jako důvěryhodnou certifikační autoritu). 
+-->
+</div>
+<p>
+</p><ul class="sbb" role="menubar">
+<li><a class="sbtno" tabindex="1" role="menuitem" href="/Wis-Forever/FIT/st/.cs">Vstup do informačního systému FIT pro studenty</a>
+</li><li><a class="sbtno" tabindex="2" role="menuitem" href="https://wis.fit.vutbr.cz/FIT/db/.cs">Vstup do informačního systému FIT pro zaměstnance</a>
+</li><li><a class="sbtno" tabindex="3" role="menuitem" href="https://wis.fit.vutbr.cz/FIT/ext/.cs">Vstup do informačního systému FIT pro externí pracovníky</a>
+</li><li><a class="sbtno" tabindex="4" role="menuitem" href="https://wis.fit.vutbr.cz/FIT/info.cs">Informace o studentském účtu FIT (login a heslo)</a> (pro nové studenty)
+</li></ul><script type="text/javascript">
+var na = navigator.appVersion;
+var nua = navigator.userAgent;
+var nu = '';
+var i,j;
+if ((i = nua.indexOf('OPT/')) != -1) { browser = 'Opera Touch'; nu = nua.substr(i+4); }
+else
+if ((i = nua.indexOf('OPR/')) != -1) { browser = 'Opera'; nu = nua.substr(i+4); }
+else
+if ((i = nua.indexOf('Edge/')) != -1) { browser = 'Edge'; nu = nua.substr(i+5); }
+else
+if ((i = nua.indexOf('Opera')) != -1) { browser = 'Opera'; nu = nua.substr(i+6); }
+else
+if ((i = nua.indexOf('Chrome')) != -1) { 
+    if ((j = nua.indexOf('Edg/')) != -1) { browser = 'Edge Chromium'; nu = nua.substring(j+4); }
+    else { browser = 'Chrome'; nu = nua.substr(i+7); }
+} else
+if ((i = nua.indexOf('Safari')) != -1) { browser = 'Safari'; nu = nua.substr(i+7); }
+else
+if ((i = nua.indexOf('Konqueror')) != -1) { browser = 'Konqueror'; nu = nua.substr(i+10); }
+else
+if ((i = nua.indexOf('Gecko')) != -1) { 
+    browser = 'Mozilla';
+    nu = nua.substr(i+6);
+    if ((j = nu.indexOf(' ')) != -1 &&
+    	(k = nu.indexOf('/')) != -1 && k > j) {
+	browser = nu.substr(j+1, k-j-1);
+	nu = nu.substr(k+1);
+	if (browser == 'Debian' || browser == 'Fedora' || browser == 'CentOS' ||browser == 'SUSE') {
+	    browser = 'Mozilla';
+	    if ((j = nu.indexOf(' ')) != -1 && 
+	    	(k = nu.indexOf('/')) != -1 && k > j) {
+		browser = nu.substr(j+1, k-j-1);
+		nu = nu.substr(k+1);
+	    } 
+	}
+    } else 
+    if ((i = nua.indexOf('rv:')) != -1) {
+    	nu = nua.substr(i+3);
+    	if ((j = nu.indexOf(')')) != -1) nu = nu.substr(0, j);
+	/* MSIE 11.0 like Gecko */
+	if ((i = nua.indexOf('Trident')) != -1) {
+    		browser = 'IE';
+	} 
+    }
+} else
+if ((i = nua.indexOf('MSIE')) != -1) { browser = 'IE'; nu = nua.substr(i+5); }
+else 
+if ((i = nua.indexOf('/')) != -1) { browser = nua.substr(0, i-1); nu = nua.substr(i+1); }
+else
+if ((i = nua.indexOf(' ')) != -1) { browser = nua.substr(0, i); }
+else browser = navigator.appName;
+if ((i = nu.indexOf(' ')) != -1) nu = nu.substr(0, i);
+if ((i = nu.indexOf(';')) != -1) nu = nu.substr(0, i);
+
+document.write("Používáte prohlížeč "+browser+" verze "+nu);
+</script>
+</div><div class="noprint">
+<address class="noprint">&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vutbr.cz">lampa@fit.vutbr.cz</a></address></div>
+
+
+</body></html>
