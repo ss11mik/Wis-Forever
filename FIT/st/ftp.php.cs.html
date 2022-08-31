@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>FTP servery</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/ftp.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>FTP servery</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:42:16</div></td></tr></tbody></table>
+<div role="main" class="content">
+<a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp">FTP</a><br><form name="repform" method="post" enctype="multipart/form-data" action="/Wis-Forever/FIT/st/ftp.php.cs/ftp">
+<!--noindex--><div style="padding-bottom: 4px"><input name="setfilter" value="Nastavit filtr" type="submit"></div><table rules="cols" cellspacing="0" cellpadding="2" bordercolor="#808080" width="100%" border="1"><tbody><tr bgcolor="lightblue" align="left"><th align="center" width="16"><img src="/Wis-Forever/images/checkboxs.gif" alt="+"></th><th><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp?order=type">Typ</a></th>
+<th><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp?order=name">Název</a></th>
+<th><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp?order=user">Login</a></th>
+<th><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp?order=title">Popis</a></th>
+</tr>
+<tr bgcolor="lightblue"><td>&nbsp;</td><td>&nbsp;</td><td><input class="forminput" name="f_name" size="16" type="text"></td>
+<td><input class="forminput" name="f_user" size="6" type="text"></td>
+<td><input class="forminput" name="f_title" size="16" type="text"></td>
+</tr>
+<!--/noindex--><tr valign="middle" bgcolor="white"><td style="width: 16px; margin: 0px; padding: 0px;border-top: solid 1px black" align="center"><input name="select_ZXZhLmZpdC52dXRici5jeg" value="1" type="checkbox"></td><td style="margin: 0px; padding: 0px; width: 40px;border-top: solid 1px black" align="center"><img src="/Wis-Forever/images/dir.gif" alt="icon"></td><td style="border-top: solid 1px black"><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp/eva.fit.vutbr.cz">eva.fit.vutbr.cz</a></td><td style="border-top: solid 1px black">xoznuk69</td><td style="border-top: solid 1px black">Domácí server Unix</td></tr>
+<tr valign="middle" bgcolor="#e8e8e8"><td style="width: 16px; margin: 0px; padding: 0px;" align="center"><input name="select_ZmlrLmZpdC52dXRici5jeg" value="1" type="checkbox"></td><td style="margin: 0px; padding: 0px; width: 40px;" align="center"><img src="/Wis-Forever/images/dir.gif" alt="icon"></td><td><a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp/fik.fit.vutbr.cz">fik.fit.vutbr.cz</a></td><td>xoznuk69</td><td>Domácí server Windows</td></tr>
+</tbody></table>
+<div style="margin-left: 4px"><img src="/Wis-Forever/images/arrow_ltr.gif" alt="^"> <a href="/Wis-Forever/FIT/st/ftp.php.cs.html/ftp?select=all">Vybrat vše</a><br><b>S vybranými: </b> <input name="delbutton" value="Smazat" type="submit"> </div></form>
+<div style="margin-left: 4px"><form name="upload" method="post" enctype="multipart/form-data" action="/Wis-Forever/FIT/st/ftp.php.cs/ftp">
+<hr size="1"><table cellspacing="0"><tbody><tr><th>Server:</th><td colspan="2"><input class="forminput" size="32" maxlength="255" name="newserver" type="text"></td></tr>
+<tr><th>Popis:</th><td colspan="2"><input class="forminput" size="60" maxlength="255" name="newinfo" type="text"></td></tr>
+<tr><th>Login:</th><td colspan="2"><input class="forminput" size="12" maxlength="32" name="newlogin" value="xoznuk69" type="text"></td></tr>
+<tr><th>Heslo:</th><td><input class="forminput" size="12" maxlength="32" name="newpass" value="" type="password"></td><td><input name="newserverbutton" value="Uložit" type="submit"></td></tr>
+</tbody></table><font size="1">Heslo je uloženo zašifrovaně. Jako klíč 
+šifry je použito vaše heslo do IS FIT. Pokud si změníte heslo do IS FIT,
+ musíte znovu zadat hesla k FTP serverům.</font></form>
+</div>
+</div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
