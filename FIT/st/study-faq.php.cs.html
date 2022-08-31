@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>FAQ k výsledkům studia</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/index.php.cs"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/study.php.cs">studia</a></th>
+<th class="mitem"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/courses.php.cs">předměty</a></th>
+<th class="mitem"><a class="stabs" href="https://wis.fit.vutbr.cz/FIT/st/study-v.php.cs">termíny</a></th>
+<th class="mitem"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/admin.php.cs">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/other.php.cs">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/other.php.cs"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/study-faq.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>FAQ k výsledkům studia</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">31. srpna 2022
+ 18:46:53</div></td></tr></tbody></table>
+<div role="main" class="content">
+<div style=" max-width: 600px"><p>Informace zde zobrazené jsou z 
+informačního systému FIT. Učitelé FIT zadávají výsledky průběžně přímo 
+do informačního systému FIT a tyto výsledky jsou zobrazovány okamžitě. V
+ průběhu opravování zkoušek počítejte s tím, že se bodové hodnocení a 
+známka může změnit (překlepy, posun o řádek ve jménech při zadávání 
+bodů, atd.), učitelé obvykle oznámí dokončení opravování emailem. 
+</p><p>Učitelé předmětů, které zajišťují jiné fakulty, zadávají výsledky
+ přes Apollo nebo portál VUT. Tyto výsledky jsou pravidelně replikovány 
+do informačního systému FIT. <b>Pozor</b> - systém ukončování předmětů 
+na FEKT je odlišný, známka a datum zkoušky se ve výsledku předmětu 
+objeví až poté, co učitel zadá datum zkoušky a tím potvrdí výsledek. 
+Protože to je mírně matoucí, je známka dopočítávána při replikaci podle 
+bodů, ale pokud není datum zkoušky, není to ještě známka konečná a 
+potvrzená učitelem.</p><p><b>Co mám dělat, když něco nesouhlasí:</b></p><p><i>Povinnost předmětu (typ) nesouhlasí se zápisovým archem, případně studijním plánem</i>
+ - Povinnost předmětů je aktualizována automaticky podle studijních 
+plánů. Pokud máte zapsáno více PV předmětů z dané skupiny, pak se jako 
+PV označí absolvovaný předmět s nejméně kredity, ostatní budou jako V.</p><p><i>Nemám zapsán předmět, který navštěvuji</i> - může nastat v případě předmětu na jiných fakultách. Nahlašte studijními poradci.</p><p><i>Schází mi hodnocení předmětu (ostatní už ho mají)</i>
+ - pokud je garant z FIT, obraťte se na něj. Pokud je to cizí předmět a 
+skutečně již ostatní hodnocení mají (a je už aspon měsíc po ukončení 
+zkouškového období), kontaktujte studijního poradce a poproste o 
+ověření.</p><p><i>Hodnocení předmětu nesouhlasí</i> - obraťte se na 
+učitele, který hodnotil, případně garanta předmětu. Pokud se jedná o 
+předmět jiné fakulty a učitel/garant tvrdí, že zadal vše správně, pak 
+reklamujte na studijním oddělení.</p><p><i>Schází body</i> - body schází
+ ve výsledcích všech starších ak.r., systém STUDENT body neukládal. V 
+aktuálních ak.r. body často schází u externích předmětů (CESA, CEVAPO, 
+jazyky), učitelé je nedodávají.</p></div></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
