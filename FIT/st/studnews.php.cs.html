@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Aktuality</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stabs" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem hide-m"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/studnews.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Aktuality</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:51:43</div></td></tr></tbody></table>
+<div role="main" class="content">
+<form action="/Wis-Forever/FIT/st/studnews.php.cs" method="GET" name="selform"><input name="user" value="xoznuk69" type="hidden">
+<div class="noprint" style="padding: 4px 4px 0 0; display: inline-block; white-space: nowrap"><label for="id_name"><b>Titulek:</b></label> <input class="forminput" id="id_name" name="name" size="32" type="text"></div><div class="noprint" style="padding: 4px 4px 0 0; display: inline-block; white-space: nowrap"><label for="id_tag"><b>Štítek:</b></label> <input class="forminput" id="id_tag" name="tag" size="8" type="text"></div><div class="noprint" style="padding: 4px 4px 0 0; display: inline-block; white-space: nowrap"><label for="id_class"><b>Typ:</b></label> <select class="formselect" id="id_class" name="class" onchange="document.selform.submit();"><option selected="selected" value="">všechny</option>
+<option value="news">novinka</option>
+<option value="info">info</option>
+<option value="stud">studijní</option>
+<option value="foreign">zahraniční</option>
+<option value="cvt">CVT</option>
+<option value="offer">nabídka</option>
+<option value="library">knihovna</option>
+<option value="museum">muzeum</option>
+<option value="press">tisk.zpr</option>
+<option value="inews">monitoring</option>
+</select></div><div class="noprint" style="padding: 4px 4px 0 0; display: inline-block; white-space: nowrap"><label for="id_expired"><b>Expirované:</b></label> <input id="id_expired" name="expired" value="1" onclick="return document.selform.SubmitButton.click()" type="checkbox"></div><div class="noprint" style="padding: 4px 4px 0 0; display: inline-block; white-space: nowrap"><label for="id_seen"><b>Již zobrazené:</b></label> <input id="id_seen" name="seen" value="1" onclick="return document.selform.SubmitButton.click()" type="checkbox"></div>
+<div class="noprint" style="padding: 4px 4px 4px 0;  display: inline-block;"><input name="SubmitButton" value="Vyhledat" type="submit"></div></form>
+
+<br><table class="tfixed res" cellspacing="0" cellpadding="4" width="100%" border="0">
+<tbody><tr><td class="news-title news-title-l right-d" nowrap="nowrap">6.7.2022</td><th class="news-title left" width="100%">Letní kolegia programu AKTION, kurzy NJ v Česku</th><th class="news-title news-title-r right"><span class="green">zahraniční</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2"><b>Letní kolegium České Budějovice 2022  
+</b>  
+<p>Termín: <b>  
+6. - 23.&nbsp;července 2022</b>.  
+</p>  
+<p>Přihlášení:   
+program,   
+žádost o přijetí</p>  
+<p>Termín pro podání žádosti: 30. dubna 2022 u pořadatelské VŠ  
+</p>  
+<p>Požadovaná úroveň němčiny: B2-C1  
+</p>  
+<p>Účastnický poplatek za celý kurz: 3 000 Kč</p>  
+<p>Kontaktní osoba: Mgr. Jana Kusová, Ph.D. (<a href="mailto:kusova@pf.jcu.cz">kusova@pf.jcu.cz</a>)</p>  
+<p>&nbsp;</p>  
+<p><b>Letní kolegium Poděbrady 2022</b></p>  
+<p>Termín: <b>10. - 24. 7. 2022</b></p>  
+<p>Přihlášení:   
+program,   
+žádost o přijetí</p>  
+<p>Termín pro podání žádosti: 30. dubna 2022 u pořadatelské VŠ  
+</p>  
+<p>Požadovaná úroveň němčiny: B1-B2  
+</p>  
+<p>Účastnický poplatek za celý kurz: 3 000 Kč  
+</p>  
+<p>Kontaktní osoba: Mgr. Štěpánka Žmudová (<a href="mailto:zmudova.stepka@seznam.cz">zmudova.stepka@seznam.cz</a>)</p>  
+<p>Bližší informace naleznete na  
+  
+webu AKTION.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 22.3.2022 09:58:19</span></p></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">30.5-30.6.2022</td><th class="news-title left" width="100%">Změna otevírací doby knihovny FIT</th><th class="news-title news-title-r right"><span class="green">knihovna</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">V červnu 2022 bude knihovna otevřena takto:<br><br>pondělí - pátek &nbsp;&nbsp;&nbsp;&nbsp; <b>9.00 - 15.00</b><br><br>
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 20.5.2022 08:35:30 Aktualizováno: 27.5.2022 14:20:40</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">30.5-10.6.2022</td><th class="news-title left" width="100%">CVT 30.5.-10.6.2022</th><th class="news-title news-title-r right"><span class="green">CVT</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Od 30.5. - 10.6.2022 bude CVT otevřeno:<br><br><b>pondělí - čtvrtek 8.00 - 16.00 hod.<br>pátek&nbsp; 8.00 - 15.00 hod.</b><br><br>Případné změny dle rezervací v rozvrhu.<br><br>
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 25.5.2022 12:39:32</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">20.5.2022</td><th class="news-title left" width="100%">Výstava výtvarných prací na téma Svět IT bude přístupná v Bednárně do konce května</th><th class="news-title news-title-r right"><span class="green">novinka</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Až do konce května se v&nbsp;prostorách Bednárny můžete pokochat    
+výtvarnými pracemi žáků a žákyň výtvarného oboru ZUŠ Vítězslavy    
+Kaprálové z&nbsp;Brna Králova Pole. Tato výstava byla uspořádána speciálně u    
+příležitosti oslav 20. výročí založení naší fakulty a očima malých    
+výtvarníků a výtvarnic reflektuje svět IT. Velmi děkujeme ZUŠ Vítězslavy   
+ Kaprálové, že nám zapůjčila tato krásná umělecká díla na celý měsíc květen.&nbsp;   
+<p>Výstava bude přístupná v&nbsp;pracovní dny 9:00 - 18:00 do 31. května 2022.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 20.5.2022 09:23:33</span></p></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">19.5.2022</td><th class="news-title left" width="100%">Mezinárodní letní škola BISSIT pro studenty FIT</th><th class="news-title news-title-r right"><span class="green">novinka</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Máte zájem zúčastnit se mezinárodní letní školy a zůstat přitom doma? Využijte příležitosti a&nbsp;přihlaste se na&nbsp;<a href="https://www.fit.vut.cz/events/bissit/.cs">BISSIT2022</a>,
+ která proběhne v&nbsp;termínu 11. - 26. 7. 2022 v&nbsp;kampusu FIT VUT.
+ Výuka bude probíhat v anglickém jazyce, úspěšní absolventi mohou získat
+ 5 kreditů. Studentům FIT nebude účtován poplatek za výuku, pouze 
+poplatek ve výši 4000 Kč za doprovodné akce (výlet do Prahy, do 
+Moravského krasu a Pivovaru v Černé Hoře), které jsou povinnou součástí 
+programu. Stále jsou volná místa v programech Machine Learning a 
+Interactive Applications - <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF0-Xiw_zjFGk9CqZgEvXK0cMS_UMwLMZavsgu0xW2rp7q5Q/viewform">přihlášku</a> je možné poslat do 25. května, oznámení o přijetí se dozvíte nejpozději do 27. 5. 2022.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 3.5.2022 18:47:47 Aktualizováno: 19.5.2022 16:07:35</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">18.5.2022</td><th class="news-title left" width="100%">Startuje další ročník IT SPY, soutěže, která objevuje mladé talentované informatiky </th><th class="news-title news-title-r right"><span class="green">novinka</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">IT SPY,    
+        soutěžní klání    
+        nejlepších diplomových prací mladých informatiků, odstartovalo    
+        4. května 2022    
+        svůj 13. ročník. Do soutěže nominuje 
+        každá IT fakulta své nejlepší práce. Pokud patří vaše práce mezi 
+        ně, kontaktujte svého vedoucího nebo ambasadora soutěže na FIT a 
+        podpořte tak svou nominaci. Budete tak mít možnost prezentovat 
+        své výsledky veřejnosti a utkat se s ostatními o hlavní 
+          cenu.&nbsp;Přihlášky se    
+      uzavírají 14. září.    
+      Více informací najdete u vedoucích prací, u ambasadora soutěže na    
+      FIT&nbsp;<a href="https://www.fit.vut.cz/person/koci/contact/.cs#nav">dr.    
+        Kočího</a> nebo    
+      na <a href="https://www.itspy.cz/cz/">webu soutěže</a>.     
+    <p>Každoročně    
+        se do    
+        mezinárodní soutěže hlásí okolo 1500 talentovaných mladých    
+        informatiků ze 14    
+        předních českých a slovenských univerzit. Vloni se na <a href="https://www.fit.vut.cz/fit/press/3232/.cs">druhém místě se    
+        umístil Patrik    
+        Goldschmidt z FIT</a>, který získal zároveň také Cenu    
+      veřejnosti.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 18.5.2022 14:24:51 Aktualizováno: 20.5.2022 14:03:29</span></p></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">17.5.2022</td><th class="news-title left" width="100%">Nabídka odborných stáží pro studenty</th><th class="news-title news-title-r right"><span class="green">novinka</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Jak strávit léto 
+užitečně? Fakulta společně s partnery FIT dala dohromady nabídku 
+odborných stáží. Jde o krátkodobější honorované spolupráce určené pro 
+studenty, díky kterým můžete získat zkušenost z různých pracovních 
+prostředí, osvojit si měkké dovednosti prací v týmu, získat zkušenosti z
+ řešení reálných problémů nebo získat téma bakalářské či diplomové 
+práce. Nabídku odborných stáží najdete <a href="https://www.fit.vut.cz/study/internships/.cs">ZDE</a>.&nbsp;&nbsp;
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 17.5.2022 10:37:36</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">16.-27.5.2022</td><th class="news-title left" width="100%">Provoz CVT</th><th class="news-title news-title-r right"><span class="green">info</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Z důvodu dlouhodobé nemoci pracovníků je provoz CVT omezen takto:<br><br><b>pondělí 16.5. 8.00 - 16.00 hod.<br>úterý&nbsp; 17.5.&nbsp;&nbsp; 8.00 - 16.00 hod.<br>středa 18.5.&nbsp; 8.00 - 16.00 hod.<br>čtvrtek 19.5. 8.00 - 16.00 hod.<br>pátek 20.5.&nbsp;&nbsp; 9.00 - 17.00 hod.<br><br>pondělí 23.5. 8.00 - 16.00 hod.<br>úterý&nbsp; 24.5.&nbsp;&nbsp; 8.00 - 16.00 hod.<br>středa 25.5.&nbsp; 8.00 - 16.00 hod.<br>čtvrtek 26.5. 8.00 - 16.00 hod.<br>pátek 27.5.&nbsp;&nbsp; 8.00 - 15.00 hod</b>.<br><br>Případné změny dle rozvrhu v Teacher-u.<br>Děkujeme za pochopení.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 16.5.2022 10:52:08 Aktualizováno: 18.5.2022 15:18:26</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">16.5.2022</td><th class="news-title left" width="100%">Odborné workshopy, samořiditelná auta, koncerty i skákací hrad. Fakulta slavila výročí na Festivalu FIT</th><th class="news-title news-title-r right"><span class="green">novinka</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2"><b>Poslední dubnová      
+sobota patřila oslavám 20. výročí založení Fakulty informačních technologií.      
+Areál fakulty přivítal vice než 1100 návštěvníků. Krásné slunečné počasí a      
+nabitý program vytvořily skvělé podmínky pro setkání a příjemné strávení      
+festivalového dne.      
+      
+</b><p>Dopoledne a brzké      
+odpoledne patřilo vědě a výzkumu: proběhlo 24 workshopů s IT tématikou,      
+konference studentských prací Excel@FIT, kde bylo letos hodnoceno 33 projektů,      
+návštěvníci nahlédli do laboratoří a nechali se inspirovat přednáškou Leoše      
+Dvořáka na téma "Software Quo Vadis".</p>      
+      
+<p>Nádvoří u pavilonu L      
+bylo v&nbsp;obležení dětí. Užívaly si skákacího hradu, soutěží a fandily      
+parkurovým králíkům při zdolávání překážek. V&nbsp;kamionu FabLab si mohly      
+nechat na 3D tiskárně vyrobit píšťalku a také si prohlédnout vystavené      
+technické vychytávky.</p>      
+      
+<p>Studentská unie měla      
+ve své režii spoustu her a sportovních soutěží a dosahované výkony byly      
+úctyhodné. Namátkou třeba soutěž v&nbsp;řevu, kde byla několika účastníky      
+pokořena hranice 120 decibelů, za což by se nemusela stydět ani průměrná      
+sbíječka.</p>      
+      
+<p>Odpoledne už na      
+hlavním podiu rozjely studentské kapely z&nbsp;FIT následovány Michalem Horákem a Petrem Čadkem.      
+A byl to skvělý hudební zážitek od první až do poslední písničky.</p>      
+      
+<p>Děkujeme všem      
+návštěvníkům, že si k&nbsp;nám našli cestu,&nbsp;našim partnerům za podporu a všem, kteří      
+věnovali svůj čas přípravám této akce. Povedla se náramně. Nahlédněte do <a href="https://festivalfit.cz/akce">naší      
+fotogalerie</a> na pár momentek. A už se můžete těšit i na video z&nbsp;akce.&nbsp;
+<br><span style="color: #7f7f7f; font-size: 85%">Zařazeno: <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=FIT20&amp;user=xoznuk69">FIT20</a></span>
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 17.5.2022 10:09:14</span></p></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">9.5-10.6.2022</td><th class="news-title left" width="100%">Přehled vybraných zkoušek po LETNÍM semestru</th><th class="news-title news-title-r right"><span class="green">studijní</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2">Pro snazší kontrolu 
+termínů a oponování kolizí termínů (za kolizi se nepovažují 
+nepřekrývající se doby zkoušek, které jsou naplánovány v 1 dni) zkoušek 
+po LETNÍM semestru jsou zveřejněny termíny zkoušek v předmětech, které 
+jsou na některém oboru předměty povinnými, a nebo jsou povinně 
+volitelnými či volitelnými na více oborech/specializacích:&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/1BIT">1BIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/2BIT">2BIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/3BIT">3BIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/1MIT">1MIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/2MIT">2MIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/1EIT">1EIT</a>,&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/2EIT">2EIT</a>&nbsp;a&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/INTE">INTE</a>.&nbsp;<br><br>Na
+ rozložení všech zkouškových termínů, zvláštní požadavky u některých 
+předmětů a vyhodnocení případných možných kolizí u studentů lze 
+nahlédnout&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky">zde</a>. Na plán s předběžnými rezervacemi místností lze nahlédnout&nbsp;<a href="https://rozvrhy.fit.vutbr.cz/LS2021/zkousky/mistnosti">zde</a>. Jakékoli disharmonie prosím neprodleně oznamujte&nbsp;<a href="https://www.fit.vut.cz/person/zaklova/.cs">K. Zaklové</a>&nbsp;a/nebo&nbsp;<a href="https://www.fit.vut.cz/person/dytrych/.cs">J. Dytrychovi</a>.<br><br>Do
+ zahájení zkouškového období může dojít k případným úpravám některých 
+termínů, a proto si prosím opakovaně kontrolujte upřesnění a další 
+pokyny ke zkouškám u jednotlivých předmětů, zvláště pak podmínky pro 
+přihlašování se na jednotlivé termíny zkoušek apod. Učebny se v průběhu 
+zkouškového období mohou postupně upravovat, protože u opravných zkoušek
+ může být nakonec menší "zájem", než se původně plánovalo. Před zkouškou
+ se tedy prosím vždy podívejte na aktuální informace na stránkách 
+jednotlivých předmětů.
+<br><span style="color: #7f7f7f; font-size: 85%">Zařazeno: <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=term%EDny&amp;user=xoznuk69">termíny</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=zkou%B9ky&amp;user=xoznuk69">zkoušky</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=BIT&amp;user=xoznuk69">BIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=MIT&amp;user=xoznuk69">MIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=1BIT&amp;user=xoznuk69">1BIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=2BIT&amp;user=xoznuk69">2BIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=3BIT&amp;user=xoznuk69">3BIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=1MIT&amp;user=xoznuk69">1MIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=2MIT&amp;user=xoznuk69">2MIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=1EIT&amp;user=xoznuk69">1EIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=2EIT&amp;user=xoznuk69">2EIT</a>, <a href="/Wis-Forever/FIT/st/studnews.php.cs.html?tag=INTE&amp;user=xoznuk69">INTE</a></span>
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 24.3.2022 19:30:45</span></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="news-title news-title-l right-d" nowrap="nowrap">6.1.2022</td><th class="news-title left" width="100%">Věda nás posouvá. A my posouváme vědu</th><th class="news-title news-title-r right"><span class="green">muzeum</span></th></tr>
+<tr><th>&nbsp;</th><td class="nbody" colspan="2"><b>Výzkum je jedním z pilířů činnosti fakulty, jejich        
+zaměstnanců i mnoha studentů. Na FIT jej má pod svými křídly proděkan pro vědu        
+a výzkum Tomáš Vojnar. "Na FIT je špičkový jak základní, tak aplikovaný výzkum        
+a je možné zde dosáhnout přenosu myšlenek od rozhraní matematiky až po aplikace        
+s firmami. To mi zde připadá skvělé," říká.</b>        
+        
+<p>IT je všude kolem        
+nás, ale ne každý považuje informační technologie za vědu. "Věda je všechno        
+před tím, než si můžete na daný produkt podat inzerát a sehnat firmu, která vám        
+ho vyrobí. Jen se zkuste vrátit se pár let do doby, kdy ještě neexistoval        
+Google, a dát si na trh požadavek, že chcete koupit vyhledávač. Nekoupíte ho.        
+Nikdo totiž ještě nevymyslel principy, na kterých stojí, nenaimplementoval je a        
+nedoladil. Zkrátka ještě neproběhl výzkum," vysvětluje důležitost vědy v IT        
+Tomáš Vojnar. </p>        
+        
+<p>Pokud by měl        
+představit vědu a výzkum na FIT, začal by výčtem a, jak říká, jenom by doufal,        
+že na nikoho nezapomene. On i jeho kolegové se tu totiž věnují celé řadě IT        
+oborů jak v základním, tak aplikovaném výzkumu, a právě i díky tomu dokážou        
+dobře reagovat na světové trendy. "Takřka kdykoliv vystoupí nějaký obor        
+dopředu, FIT v něm má své zastoupení. V posledních letech je to zejména        
+strojové učení," dodává. </p>        
+        
+<p>Kromě umělé inteligence        
+se výzkumníci na FIT věnují například síťové bezpečnosti i dalším aspektům        
+počítačové bezpečnosti, automatizované analýze a verifikaci, vestavnému        
+počítání i superpočítačovým technologiím, evolučnímu hardwaru, robotickým a        
+kyberfyzikálním systémům, internetu věcí i teoretickým základům informatiky. </p>        
+        
+<p>"V řadě oblastí        
+důležitých pro společnost posouváme hranice poznání. Výsledky z takového bádání        
+by pak měly zkvalitnit život společnosti - mluvím například o bezpečnosti,        
+chytrých městech, eGovernmentu, autonomních vozidlech, chytrém zemědělství nebo        
+třeba aplikacích v lékařství," vyjmenovává Tomáš Vojnar. </p>        
+        
+<p>Jak dodává, nesmírně        
+důležité je také znalosti na hraně současného poznání umět předat dál        
+studentům. "Nejen kvůli jejich kariérám, ale i kvůli rozvoji regionu. Jen tak        
+tu mohou vznikat silné týmy a firmy, které přilákají další chytré hlavy,"        
+míní.&nbsp; I proto se FIT snaží studenty do        
+výzkumu zapojit co nejdříve - už v létě po 1. ročníku. Díky takzvanému        
+projektovému předmětu si mohou část klasické výuky nahradit prací na výzkumných        
+projektech. "Pokud to takto dotáhnou až na diplomku, mají za sebou už čtyři        
+roky v konkrétní výzkumné oblasti a to není na studenta zrovna málo. Možná tak        
+jen získají zkušenosti a odejdou pracovat do průmyslu. Vždycky je tu však možnost,        
+že to jednou budou oni, kdo povedou celý výzkumný tým a posunou možnosti IT        
+zase o kus dál," říká Tomáš Vojnar. </p><p><img alt="[img]" src="/Wis-Forever/images/studnews.jpg"></p><p>FOTO: Michal Fanta</p>
+        
+<p>Na výzkumu fakulta        
+spolupracuje s řadou akademických i průmyslových pracovišť, nejen českých, ale i        
+zahraničních. FIT s nimi řeší národní i mezinárodní projekty - jak v grantovém        
+výzkumu, který jednoznačně převažuje, tak také ve smluvním. &nbsp;"Na FIT je špičkový základní i aplikovaný        
+výzkum a je možné zde dosáhnout přenosu myšlenek od rozhraní matematiky až po        
+aplikace s firmami. To mi zde připadá skvělé," uzavírá Tomáš Vojnar.
+<br><span style="color: #7f7f7f; font-size: 85%">Vloženo: 6.1.2022 12:33:57</span></p></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody></table>
+</div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
