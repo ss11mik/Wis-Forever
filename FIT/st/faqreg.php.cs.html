@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>FAQ k registraci předmětů</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<style type="text/css">
+dt {
+    margin-top: 8px;
+    color: #0063a6;
+}
+</style>
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/reg.php.cs.html">registrace</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/faqreg.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>FAQ k registraci předmětů</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:44:56</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p><dl style="max-width: 600px"><dt><b>Kde najdu pravidla registrace předmětů?</b>
+</dt><dd>Registraci předmětů upravuje rozhodnutí děkana, zveřejněné zde:
+<a href="https://www.fit.vut.cz/fit/info/smernice/">https://www.fit.vut.cz/fit/info/smernice/</a></dd><dt><b>Proč jsou jiné počty zbývajících a absolvovaných kreditů
+v registraci a přehledu studia?</b>
+</dt><dd>V přehledu studia se vypisují  předměty letního semestru podle 
+skutečného stavu, při registraci se považují za absolvované
+a nemůžete je registrovat pro přístí rok.
+Během přeregistrace o prázdninách už budou známy skutečné výsledky
+letního semestru a případné neúspěšné předměty si budete moci doregistrovat.
+Další rozdíly vznikají díky změně kreditů u některých předmětů a předmetům BAN1-4 v oboru BIT, kde 
+závisí počet PV kreditů ve studijním plánu studenta na prvním zapsaném BANx. 
+Registrační formulář by měl mít přesnější odhad zbývajících P/PV kreditů, 
+protože je počítá podle studijního plánu platného pro registraci. 
+Přehled studia nemusí počítat budoucí P a PV předměty stejně, protože
+vychází ze studijního plánu pro daný akademický rok.</dd><dt><b>Co znamená, když má předmět ve sloupečku Pořadí poznámku '<a name="zruseno" style="text-decoration: none; color: red">zrušeno auto'</a> a má kapacitu 0?</b>
+</dt><dd>Nebyl naplněn minimální počet studentů potřebný k otevření předmětu. Předmět
+tudíž není otevřen a vaše registrace byla automaticky zrušena.</dd><dt><b>V registračním formuláři má předmět povinnost XYZ, zatímco v registračním (zápisovém) listu má ABC</b>
+</dt><dd>V registračním formuláři jsou PV předměty z absolvované skupiny 
+pro usnadnění výběru požadovaných předmětů
+zobrazeny jako V nebo D (podle studijního plánu).
+Při zápisu budou všechny tyto předměty zapsány jako PV, přičemž 
+pro splnění podmínky absolvování skupiny PV se použijou automaticky 
+ty, které absolvujete a případné přebytečné se změní na V.
+</dd><dt><b>Co znamená červené pozadí ve sloupci 'Přihl'?</b>
+</dt><dd>Předmět je v převisu, tj. je přihlášeno více studentů než
+je kapacita předmětu. Pokud tento předmět nemáte zaregistrován,
+tak jej ani nemá smysl registrovat. Při registraci můžete podle velikosti 
+převisu odhadnout, zda je naděje na uvolnění - v nižších ročnících odpadá 
+průměrně 15-20% studentů ročně. Při přeregistraci není velikost převisu
+zobrazována, protože je předmět zaplňován pouze do maximální kapacity.
+</dd><dt><b>Co znamená červené pozadí ve sloupci 'Pořadí'?</b>
+</dt><dd>Předmět je v převisu, tj. je přihlášeno více studentů než
+je kapacita předmětu a jste v pořadníku za limitem předmětu (vaše
+pořadí je vypsáno bílým písmem).
+</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="preg" style="text-decoration: none; color: red">preg</a>'?</b>
+</dt><dd>Nemáte zaregistrované povinné předměty z aktuálního nebo nižších
+ročníků a registrujete si více než jeden volitelný předmět v semestru. Podmínkou registrace
+více volitelných předmětů je současná nebo předchozí registrace všech povinných
+předmětů v daném semestru. Pokud máte z nějakých důvodů (výjezd do zahraničí) některé 
+povinné předměty odpuštěny, domluvte si předem registraci volitelných
+předmětů u studijního poradce.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="nereg2" style="text-decoration: none; color: red">nereg2</a>'?</b>
+</dt><dd>Nemáte zaregistrovaný druhý semestr celoročního jazykového
+předmětu. Pokud registrujete
+letní semestr, musíte současně registrovat zimní semestr a naopak, čili
+oba semestry jednoho jazyka současně. Totéž platí při rušení registrace,
+musíte najednou odregistrovat oba semestry jazyka.
+</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="neban2" style="text-decoration: none; color: red">neban2</a>'?</b>
+</dt><dd>Nemáte zaregistrovaný druhý semestr celoročního jazykového
+předmětu BANx. Pokud registrujete
+letní semestr, musíte současně registrovat zimní semestr a naopak, čili
+oba semestry jednoho jazyka současně. Totéž platí při rušení registrace,
+musíte najednou odregistrovat oba semestry jazyka.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="prebanx" style="text-decoration: none; color: red">prebanx</a>'?</b>
+</dt><dd>Chcete si zaregistrovat v létě jazyk BANx a nemáte zaregistrován 
+v zimě předchozí BANx-1.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="krakr" style="text-decoration: none; color: red">krakr</a>'?</b>
+</dt><dd>Suma kreditů zaregistrovaných předmětů překročila povolený limit za ak.r. (65-80 kr.).
+Takto označený předmět není zaregistrován.
+</dd><dt><b>Proč mám limit kreditů za ak.r. jen 65, když za studium mám povoleno 120+14?</b>
+</dt><dd>Rozhodné období pro zvýšení ročního limitu registrovaných předmětů
+končí až po zkouškovém období letního semestru. Teprve poté se uplatní
+případný zvýšený limit kreditů na další ak.r.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="krstud" style="text-decoration: none; color: red">krstud</a>'?</b>
+</dt><dd>Součet kreditů zaregistrovaných a již absolvovaných předmětů překročil 
+povolený limit za studium (plus případný povolený převis). Takto označený 
+předmět není zaregistrován. 
+Pokud jste v posledním ročníku, zaregistrujte si nejprve Státní
+závěrečnou zkoušku, tím budete mít povoleno překročit limit kreditů za studium
+(viz řádek <b>Absolvováno</b> na registračním listu).<br>
+Pokud jste měl v předchozím roce zaregistrováno hodně
+volitelných předmětů, může se stát, že už vám nezbude v povoleném 
+limitu 180+4 (120+4) prostor na žádný volitelný předmět. 
+<br>Pokud si nemůžete zaregistrovat
+minimální počet 30 kreditů pro poslední rok studia, nevadí to, podmínka
+zápisu alespoň 30 kreditů za ak.rok není v posledním roce studia vyžadována.
+Pokud se vám nepodaří zaregistrovat ani povinné předměty nutné
+k dokončení studia, konzultujte tento problém se studijním poradcem.  </dd><dt><b>Jsem v posledním ročníku, ale nemám v nabídce IBT/DIP a SZZ</b>
+</dt><dd>Pokud vám schází více než povolený roční limit kreditů, nemůžete v příštím roce
+uzavřít studium, proto také nemůžete dělat závěrečnou práci a státní
+zkoušku.</dd><dt><b>Co když nejde MSZ/ISZ zrušit a má ve sloupci Pořadí poznámku '<a name="kr-szz" style="text-decoration: none; color: red">kr-szz</a>'?</b>
+</dt><dd>Chcete zrušit registraci Státní závěrečné zkoušky a tím by
+nebylo povoleno překročení limitu kreditů za studium (viz předchozí body).
+Zrušte nejprve registraci přebytečných předmětů a pak
+můžete zrušit registraci MSZ/ISZ. Pokud žádné přebytečné předměty nemáte,
+oznamte tento problém a vyčkejte pokynů.</dd><dt><b>Co když nejde DIP/IBT zrušit a má ve sloupci Pořadí poznámku '<a name="sep-dip" style="text-decoration: none; color: red">sep-dip</a>' (resp. '<a name="itt-ibt" style="text-decoration: none; color: red">itt-ibt</a>)?</b>
+</dt><dd>Máte zaregistrován semestrální projekt a nemáte zapsanou nebo chcete
+zrušit diplomovou (bakalářskou) práci. Semestrální projekt je standardně 
+ve stejném roce jako diplomová (bakalářská) práce, nemůže být samostatně 
+(o výjimku lze požádat studijního proděkana).</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="krvol" style="text-decoration: none; color: red">krvol</a>'?</b>
+</dt><dd>Součet kreditů absolvovaných, zaregistrovaných a scházejících povinných 
+předmětů překročil povolený kreditový limit za celé studium. 
+Takto označený předmět není zaregistrován. Tento limit není 
+kontrolován v posledním ročníku studia (=je registrována Státní závěrečná zkouška),
+zde je povolen převis +9 nebo +14 kreditů při nominální délce studia, resp. +4 kreditů při rozvolněném studiu.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="1jazyk" style="text-decoration: none; color: red">1jazyk</a>'?</b>
+</dt><dd>Během jednoho semestru je povoleno registrovat 
+pouze jeden jazykový předmět. Takto označený předmět není 
+zaregistrován. Pokud se vám náhodou podaří zaregistrovat dva jazyky, 
+bude vám dodatečně jeden z nich zrušen ručně.</dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="1human" style="text-decoration: none; color: red">1human</a>'?</b>
+</dt><dd>Během jednoho roku je povoleno registrovat pouze pouze jeden 
+společenskovědní předmět. Výjimkou je dvojice předmětu FAVU v zimním
+a letním semestru, které lze najednou registrovat. 
+Takto označený předmět není zaregistrován. </dd><dt><b>Co když má předmět ve sloupci Pořadí poznámku '<a name="previs" style="text-decoration: none; color: red">převis</a>'?</b>
+</dt><dd>Předmět má omezenou kapacitu a podle pořadí registrace jste na xx. místě.
+Pokud se studenti s nižším pořadím do ukončení registrace/letní přeregistrace
+neodhlásí, nebudete mít tento předmět zapsán. <span class="red">Předměty
+ v převisu se započítávají do sumy kreditů na registračním formuláři, 
+ale pokud zůstanou v převisu i po ukončení registrace/letní 
+přeregistrace, nebudou vám zapsány a může se stát, že budete mít málo 
+kreditů.</span> Ověřit si to můžete na výpisu registračního listu.</dd><dt><b>Mám si takový předmět odregistrovat?</b>
+</dt><dd>Můžete, ale nemusíte. <span color="red">Pokud si jej odregistrujete, vypadnete z
+pořadníku a při letní přeregistraci si jej nemůžete jako nadlimitní zaregistrovat</span> (pokud zůstane
+přeplněný - při letní přeregistraci nelze registrovat zaplněný předmět). 
+Pokud si jej necháte zaregistrovaný, počítá se vám do limitu kreditů
+na akademický rok a nemůžete si místo něj zaregistrovat jiný předmět.
+</dd><dt><b>Co znamená poznámka 'opak.p' v Pořadí?</b>
+</dt><dd>Jde o opakovaný povinný předmět, tento předmět nelze 
+odregistrovat, protože si jej musíte podle SZŘ zapsat v nejbližším 
+semestru kdy je otevřen.</dd><dt><b>Co když si omylem odregistruju při letní přeregistraci přeplněný předmět, můžu si ho opět zaregistrovat?</b>
+</dt><dd>Nemůžete. Odregistrováním jste uvolnil místo prvnímu studentovi
+v převisu a ten má teď předmět zaregistrován místo vás. 
+Pokud je předmět stále přeplněn, pokus o opětovnou registraci neprojde.
+</dd><dt><b>Co znamená, když má předmět ve sloupečku Pořadí poznámku '<a name="zruseno" style="text-decoration: none; color: red">zrušeno autozap'</a>?</b>
+</dt><dd>Předmět jste měl původně zaregistrován a zapsán, ale poté vám byl z nějakého
+důvodu zrušen. Takovýto předmět si nemůžete registrovat, 
+pokud nevíte proč nebo se situace změnila, konzultujte tento problém se 
+studijním poradcem.
+</dd></dl><p>Pokud máte dotazy, můžete je zaslat buď na <a href="mailto:lampa@fit.vutbr.cz">lampa@fit.vutbr.cz</a> (technické dotazy) nebo<br><a href="mailto:dytrych@fit.vutbr.cz">dytrych@fit.vutbr.cz</a> (studijní, organizační a jiné dotazy).</p></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
