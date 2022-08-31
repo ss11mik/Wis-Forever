@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Wiki předmětu</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<link rel="stylesheet" href="/Wis-Forever/common/cwk-css.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/cwk.php.en?id=14664&amp;csid=767922">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Wiki předmětu</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">31. srpna 2022
+ 12:28:03</div></td></tr></tbody></table>
+<div role="main" class="content">
+<table cellpadding="4" bgcolor="white" width="100%"><tbody><tr><td>Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p></td><td align="right"><a href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767922">Zpět na termíny</a>&nbsp;</td></tr></tbody></table>
+<table class="res" style="max-width: 100%" cellpadding="0"><tbody><tr valign="top"><td style="background-color: #f0f0f0">
+<div class="leftpane">
+    <div class="home">
+[[<a class="internal" href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;csid=767922&amp;id=14664" id="wiki__top" accesskey="h" title="[H]">IMS Home</a>]]
+    </div>
+    <div id="toolbar" class="toolbar">
+   <div class="tb_main">
+
+<p>
+
+Navigace
+</p>
+
+<ul>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Hlavní stránka</a></span></li>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=recent&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Poslední změny</a></span></li>
+<li class="level1"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Help:Main_Page&amp;csid=767922&amp;id=14664" class="internal" title="Help:Hlavní stránka">Nápověda</a></li>
+</ul>
+
+<p>Stránka</p><div class="tb_box"><form action="FIT/st/cwk.php.cs.html?title=Main_Page&amp;csid=767922&amp;id=14664" class="search" id="form_search" method="get"><div class="searchform">
+<input name="csid" value="767922" type="hidden">
+<input name="id" value="14664" type="hidden">
+<input autocomplete="off" id="qsearch" accesskey="f" name="search" class="forminput" title="Enter search text" type="text">
+<input name="dogo" value="Zobrazit" class="button" title="Zobrazit" type="submit"> <input name="dosearch" value="Hledat" class="button" title="Hledat" type="submit">
+</div></form>
+</div>
+
+
+<p>
+
+Nástroje
+</p>
+
+<ul>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=backlink&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Odkazuje sem</a></span></li>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=upload&amp;ns=IMS&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Nahrát soubor</a></span></li>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=fileinfo&amp;ns=IMS&amp;list=1&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Seznam souborů</a></span></li>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=index&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Seznam stránek</a></span></li>
+<li class="level1"><span class="curid"><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=history&amp;csid=767922&amp;id=14664" class="internal" title="Hlavní stránka">Historie stránky</a></span></li>
+</ul>
+</div>   </div>
+</div>
+</td><td width="100%">
+<div class="rightpane maxw8">
+    <div class="bar" id="bar_top">
+    <ul class="bar_menu">
+<li><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=show&amp;rev=0&amp;csid=767922&amp;id=14664" class="selected" title="Stránka" rel="nofollow">Stránka</a></li><li><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=source&amp;rev=0&amp;csid=767922&amp;id=14664" title="Zdroj" rel="nofollow">Zdroj</a></li><li><a href="/Wis-Forever/FIT/st/cwk.php.cs.html?title=Main_Page&amp;action=subscribe&amp;csid=767922&amp;id=14664" title="Sledovat" rel="nofollow">Sledovat</a></li>  </ul>
+    </div>
+    <div class="page">
+<!-- wikipage start -->
+<h1>Informace pro předmět IMS</h1><div class="toc"><table class="toc"><tbody><tr><th colspan="7">Obsah</th></tr>
+<tr><td nowrap="nowrap" width="10">1</td><td colspan="5"> <a class="internal" href="#P%F8edn%E1%B9ky">Přednášky</a></td></tr><tr><td nowrap="nowrap" width="10">2</td><td colspan="5"> <a class="internal" href="#Demo_cvi%E8en%ED">Demo cvičení</a></td></tr><tr><td nowrap="nowrap" width="10">3</td><td colspan="5"> <a class="internal" href="#Projekt">Projekt</a></td></tr><tr><td nowrap="nowrap" width="10">4</td><td colspan="5"> <a class="internal" href="#Zkou%B9ka">Zkouška</a></td></tr><tr><td nowrap="nowrap" width="10">5</td><td colspan="5"> <a class="internal" href="#Odkazy">Odkazy</a></td></tr></tbody></table></div>
+
+<p>
+
+Zimní semestr 2021/22: informace na této wiki stránce jsou jen minimální, aktuality najdete na stránce:
+</p>
+
+<ul>
+<li class="level1"><a href="http://www.fit.vutbr.cz/study/courses/IMS/public/" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/" rel="nofollow">Aktuální informace k předmětu IMS</a></li>
+</ul>
+
+<ul>
+<li class="level1"><a href="https://www.fit.vut.cz/study/course/IMS/" class="external" title="https://www.fit.vut.cz/study/course/IMS/" rel="nofollow">Oficiální stránka předmětu</a> </li>
+<li class="level1">Pozor na minimum 30b ze zkoušky</li>
+</ul>
+
+<h2><span><a class="anchor" name="Přednášky">Přednášky</a></span></h2>
+
+<p>
+
+Přednášky jsou vysílány on-line (<a href="https://youtube.com/playlist?list=PL_eb8wrKJwYuP9rY5EzXE6BWyqaXTX8F4" class="external" title="https://youtube.com/playlist?list=PL_eb8wrKJwYuP9rY5EzXE6BWyqaXTX8F4
+" rel="nofollow">D105-youtube</a>) po dobu epidemie COVID-19.
+Budou také zveřejněny videozáznamy přednášek. 
+</p>
+
+<ul>
+<li class="level1">Slajdy: <a href="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS.pdf" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS.pdf" rel="nofollow">IMS.pdf</a>, více slajdů  na stránku: <a href="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS-4.pdf" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS-4.pdf" rel="nofollow">IMS-4.pdf </a>, <a href="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS-9.pdf" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/IMS-9.pdf" rel="nofollow">IMS-9.pdf </a>), <a href="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/prednasky/" rel="nofollow">další informace</a>.</li>
+</ul>
+
+<ul>
+<li class="level1">Odkazy na <a href="http://www.fit.vutbr.cz/study/courses/IMS/public/priklady/" class="external" title="http://www.fit.vutbr.cz/study/courses/IMS/public/priklady/" rel="nofollow">příklady</a></li>
+</ul>
+
+<h2><span><a class="anchor" name="Demo_cvičení">Demo cvičení</a></span></h2>
+
+<p>
+
+Aktuální informace jsou na odkazu <a href="http://perchta.fit.vutbr.cz/vyuka-ims/1" class="external" title="http://perchta.fit.vutbr.cz/vyuka-ims/1" rel="nofollow">zde</a>.
+((Jsou zveřejněny videozáznamy 2019.))
+</p>
+
+<h2><span><a class="anchor" name="Projekt">Projekt</a></span></h2>
+
+<p>
+
+Zadání najdete na odkazu <a href="http://perchta.fit.vutbr.cz/vyuka-ims/24" class="external" title="http://perchta.fit.vutbr.cz/vyuka-ims/24" rel="nofollow">zde</a>. Projekt řídí M. Hrubý.
+</p>
+
+<h2><span><a class="anchor" name="Zkouška">Zkouška</a></span></h2>
+
+<ul>
+<li class="level1">Půlsemestrální (může být nahrazena on-line testem).</li>
+</ul>
+
+<ul>
+<li class="level1">Závěrečná - písemná, minimum je 30b, trvání 80 minut</li>
+</ul>
+
+<h2><span><a class="anchor" name="Odkazy">Odkazy</a></span></h2>
+
+<p>
+
+Příklady:
+</p>
+
+<ul>
+<li class="level1"><a href="http://www.illustris-project.org/" class="external" title="http://www.illustris-project.org/" rel="nofollow">Projekt Illustris</a> - simulace vývoje vesmíru</li>
+<li class="level1"><a href="http://science.slashdot.org/story/14/11/09/0137205/researchers-simulate-monster-ef5-tornado" class="external" title="http://science.slashdot.org/story/14/11/09/0137205/researchers-simulate-monster-ef5-tornado" rel="nofollow">Simulace tornáda</a></li>
+<li class="level1"><a href="http://www.nature.com/news/computer-modellers-secure-chemistry-nobels-1.13903" class="external" title="http://www.nature.com/news/computer-modellers-secure-chemistry-nobels-1.13903" rel="nofollow">Nobelova cena za chemii</a> - modelování chemických vazeb atd.</li>
+<li class="level1"><a href="http://hs.umt.edu/RegionalHydrologyLab/software/default.php" class="external" title="http://hs.umt.edu/RegionalHydrologyLab/software/default.php" rel="nofollow">Hydrologické modely</a> </li>
+</ul>
+<div class="clearer"></div>   <!-- wikipage end -->
+    </div>
+
+    <div class="footer">
+      <div class="wiki_top"><a href="#top" onclick="window.scrollTo(0, 0)" title="Nahoru">Nahoru</a>
+      </div>
+      <div class="meta">
+        <div class="user">
+    </div>
+      <div class="doc">Id stránky: 624, zobrazena: 8548, verze: 18091, dne: 2022-01-12 15:11:02 uložil: peringer</div>
+      </div>
+    </div>
+</div>
+</td></tr>
+</tbody></table>
+</div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
