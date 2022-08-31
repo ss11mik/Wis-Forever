@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Dotazníky k předmětům</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem hide-m"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/course-h2.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Dotazníky k předmětům</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:47:59</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p><table class="stbl" cellspacing="0" cellpadding="2"><tbody><tr bgcolor="#ADD8E6"><th>Zahájení</th><th>Ukončení</th><th>Název</th></tr><tr bgcolor="#dfe7cf"><td>2004-02-02 00:00:00</td><td>2004-04-01 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=1&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2003/4</a></td></tr><tr bgcolor="#FFF8DC"><td>2004-06-21 00:00:00</td><td>2004-08-01 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=2&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2003/4</a></td></tr><tr bgcolor="#dfe7cf"><td>2005-02-05 00:00:00</td><td>2005-03-29 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=7&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2004/5</a></td></tr><tr bgcolor="#FFF8DC"><td>2005-05-30 00:00:00</td><td>2005-07-20 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=18&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2004/5</a></td></tr><tr bgcolor="#dfe7cf"><td>2006-02-05 00:00:00</td><td>2006-03-29 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=20&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2005/6</a></td></tr><tr bgcolor="#FFF8DC"><td>2006-06-10 00:00:00</td><td>2006-07-14 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=26&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2005/6</a></td></tr><tr bgcolor="#dfe7cf"><td>2007-02-03 00:00:00</td><td>2007-03-29 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=29&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2006/7</a></td></tr><tr bgcolor="#FFF8DC"><td>2007-06-11 00:00:00</td><td>2007-07-15 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=31&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2006/7</a></td></tr><tr bgcolor="#dfe7cf"><td>2008-02-03 00:00:00</td><td>2008-03-15 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=36&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2007/8</a></td></tr><tr bgcolor="#FFF8DC"><td>2008-06-09 00:00:00</td><td>2008-07-20 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=39&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2007/8</a></td></tr><tr bgcolor="#dfe7cf"><td>2009-02-09 00:00:00</td><td>2009-03-10 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=42&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2008/9</a></td></tr><tr bgcolor="#FFF8DC"><td>2009-06-13 00:00:00</td><td>2009-07-12 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=48&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2008/9</a></td></tr><tr bgcolor="#dfe7cf"><td>2010-02-06 00:00:00</td><td>2010-03-03 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=51&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2009/10</a></td></tr><tr bgcolor="#FFF8DC"><td>2010-06-21 00:00:00</td><td>2010-07-18 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=55&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2009/10</a></td></tr><tr bgcolor="#dfe7cf"><td>2011-02-06 00:00:00</td><td>2011-03-03 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=63&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2010/11</a></td></tr><tr bgcolor="#FFF8DC"><td>2011-06-13 00:00:00</td><td>2011-07-17 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=66&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2010/11</a></td></tr><tr bgcolor="#dfe7cf"><td>2012-02-06 00:00:00</td><td>2012-03-03 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=81&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2011/12</a></td></tr><tr bgcolor="#FFF8DC"><td>2012-06-11 00:00:00</td><td>2012-07-15 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=84&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2011/12</a></td></tr><tr bgcolor="#dfe7cf"><td>2013-02-04 00:00:00</td><td>2013-03-04 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=88&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2012/13</a></td></tr><tr bgcolor="#FFF8DC"><td>2013-06-10 00:00:00</td><td>2013-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=92&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2012/13</a></td></tr><tr bgcolor="#dfe7cf"><td>2014-02-08 00:00:00</td><td>2014-03-04 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=96&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2013/14</a></td></tr><tr bgcolor="#FFF8DC"><td>2014-06-14 00:00:00</td><td>2014-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=100&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2013/14</a></td></tr><tr bgcolor="#dfe7cf"><td>2015-02-08 00:00:00</td><td>2015-02-22 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=107&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2014/15</a></td></tr><tr bgcolor="#FFF8DC"><td>2015-06-13 00:00:00</td><td>2015-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=109&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2014/15</a></td></tr><tr bgcolor="#dfe7cf"><td>2016-02-07 00:00:00</td><td>2016-02-21 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=113&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2015/16</a></td></tr><tr bgcolor="#FFF8DC"><td>2016-06-11 00:00:00</td><td>2016-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=115&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2015/16</a></td></tr><tr bgcolor="#dfe7cf"><td>2017-02-04 00:00:00</td><td>2017-02-28 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=122&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2016/17</a></td></tr><tr bgcolor="#FFF8DC"><td>2017-06-10 00:00:00</td><td>2017-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=123&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2016/17</a></td></tr><tr bgcolor="#dfe7cf"><td>2018-02-03 00:00:00</td><td>2018-02-28 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=131&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2017/18</a></td></tr><tr bgcolor="#FFF8DC"><td>2018-06-09 00:00:00</td><td>2018-07-01 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=133&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2017/18</a></td></tr><tr bgcolor="#dfe7cf"><td>2019-02-02 00:00:00</td><td>2019-02-28 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=135&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2018/19</a></td></tr><tr bgcolor="#FFF8DC"><td>2019-06-08 00:00:00</td><td>2019-06-30 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=139&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2018/19</a></td></tr><tr bgcolor="#dfe7cf"><td>2020-02-01 00:00:00</td><td>2020-02-29 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=140&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2019/20</a></td></tr><tr bgcolor="#FFF8DC"><td>2020-07-04 00:00:00</td><td>2020-07-31 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=152&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2019/20</a></td></tr><tr bgcolor="#dfe7cf"><td>2021-02-08 00:00:00</td><td>2021-02-28 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=160&amp;csid=0&amp;cid=0">Hodnocení předmětů v zimním semestru ak.r. 2020/21</a></td></tr><tr bgcolor="#FFF8DC"><td>2021-06-12 00:00:00</td><td>2021-07-04 00:00:00</td><td><a class="bar" href="/Wis-Forever/FIT/st/course-h2.php.cs.html?id=168&amp;csid=0&amp;cid=0">Hodnocení předmětů v letním semestru ak.r. 2020/21</a></td></tr></tbody></table><p></p></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
