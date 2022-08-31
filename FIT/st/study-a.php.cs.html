@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Přehled studia na FIT</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem hide-m"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-d hide-t"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html"><span style="font-size: 16px;line-height:16px">&nbsp;&gt;&nbsp;</span></a></td><td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/study-a.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Přehled studia na FIT</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 11:49:33</div></td></tr></tbody></table>
+<div role="main" class="content">
+Login xoznuk69, <b>Wiskočil Tomáš</b>, 3. ročník BITP, prezenční, FIT<br>
+Ak. rok 2021/2022 studium č.1: řádný zápis<p></p><div class="table-holder"><table style="border: 1px solid #999" cellspacing="0" cellpadding="4">
+<tbody><tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2019/2020, semestr zimní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IDM</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709753&amp;back=a">Diskrétní matematika</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">55&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3E</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2020-01-06</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IEL</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709752&amp;back=a">Elektronika pro informační technologie</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">70&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2020-01-03</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ILG</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709751&amp;back=a">Lineární algebra</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">72&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2019-12-20</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IUS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709748&amp;back=a">Úvod do softwarového inženýrství</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">83&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2020-01-10</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IZP</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709747&amp;back=a">Základy programování</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">79&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>7</td><td class="hide-m" nowrap="nowrap">2020-01-08</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">BAN4</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=719807&amp;back=a">Angličtina 4: středně pokročilí 2</a></td><td class="hide-m">PVA</td><td class="hide-m">ZáZk</td><td align="right">90&nbsp;&nbsp;</td><td>ano*</td><td><b>1A</b></td><td>3</td><td class="hide-m" nowrap="nowrap">uznáno</td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2019/2020, semestr letní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IMA1</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709755&amp;back=a">Matematická analýza 1</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">74&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2020-06-11</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">INC</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709754&amp;back=a">Návrh číslicových systémů</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">78&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2020-06-15</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IOS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709749&amp;back=a">Operační systémy</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">72&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2020-06-18</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ISU</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=709750&amp;back=a">Programování na strojové úrovni</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">68&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3D</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2020-06-09</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IZG</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=720843&amp;back=a">Základy počítačové grafiky</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">84&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2020-06-02</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">ITY</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=716251&amp;back=a">Typografie a publikování</a></td><td class="hide-m">V</td><td class="hide-m">KlZá</td><td align="right">92&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>1A</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2020-06-05</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">IVS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=720844&amp;back=a">Praktické aspekty vývoje software</a></td><td class="hide-m">V</td><td class="hide-m">KlZá</td><td align="right">87&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2020-06-25</td></tr>
+<tr><td colspan="9" style="border-left: 1px solid white; border-top: 1px solid #999; border-bottom: 1px solid #999; border-right: 1px solid white"><p></p><table class="stbl" style="float:left; margin-right: 8px; margin-bottom: 8px;"><tbody><tr><th>Kredity</th><th>&nbsp;P&nbsp;</th><th>PVA</th><th>&nbsp;V&nbsp;</th><th>Suma</th></tr>
+<tr><th align="left">Zapsané</th><td bgcolor="#ffdead" align="right">54</td><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#f7f7af" align="right">9</td><td align="right"><b>63</b></td></tr>
+<tr><th align="left">Získané</th><td bgcolor="#ffdead" align="right">54</td><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#f7f7af" align="right">9</td><td align="right"><b>63</b></td></tr><tr><th align="left">Uznané</th><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#ffdead" align="right">3</td><td bgcolor="#f7f7af" align="right">0</td><td align="right"><b>3</b></td></tr>
+<tr><th align="left">Suma</th><td bgcolor="#ffdead" align="right">54</td><td bgcolor="#ffdead" align="right">3</td><td bgcolor="#f7f7af" align="right">9</td><td align="right"><b>66</b></td></tr></tbody></table><table class="stbl" style="min-width:300px"><tbody><tr><th align="left">Studijní průměr bez F</th><td>122/63 = 1,936<br>97. místo z&nbsp;223<br>(bez F, &gt;=54 kr.)</td></tr><tr><th align="left">Vážený studijní průměr</th><td>122/63 = 1,936</td></tr><tr><th align="left">SPbF zima</th><td>58,5/28 = 2,089<br>138.-147. místo z&nbsp;312<br>(bez F, &gt;=20 kr.)</td></tr>
+<tr><th align="left">SPbF léto</th><td>63,5/35 = 1,814<br>87. místo z&nbsp;255<br>(bez F, &gt;=20 kr.)</td></tr>
+</tbody></table>&nbsp;<p style="page-break-before: always"></p></td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2020/2021, semestr zimní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IAL</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724759&amp;back=a">Algoritmy</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">55&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3E</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-01-07</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IFJ</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724760&amp;back=a">Formální jazyky a překladače</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">57&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3E</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-01-18</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IMA2</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724761&amp;back=a">Matematická analýza 2</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">63&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3D</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2021-02-04</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">INP</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724762&amp;back=a">Návrh počítačových systémů</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">80&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2021-01-11</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IPT</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724763&amp;back=a">Pravděpodobnost a statistika</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">58&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3E</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-01-15</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ISS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724764&amp;back=a">Signály a systémy</a></td><td class="hide-m">P</td><td class="hide-m">Zk</td><td align="right">55&nbsp;&nbsp;</td><td>-</td><td><b>3E</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2021-01-21</td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2020/2021, semestr letní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IDS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724765&amp;back=a">Databázové systémy</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">60&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3D</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-05-14</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IPK</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724766&amp;back=a">Počítačové komunikace a sítě</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">70&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2021-05-18</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IPP</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724767&amp;back=a">Principy programovacích jazyků a OOP</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">74&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-05-10</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IZU</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724768&amp;back=a">Základy umělé inteligence</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">64&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>3D</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2021-05-12</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">BGA014</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=753889&amp;back=a">Dějiny architektury 1</a></td><td class="hide-m">V</td><td class="hide-m">Zk</td><td align="right">85&nbsp;&nbsp;</td><td>-</td><td><b>2B</b></td><td>2</td><td class="hide-m" nowrap="nowrap">2021-06-04</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">IBS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724769&amp;back=a">Bezpečnost a počítačové sítě</a></td><td class="hide-m">V</td><td class="hide-m">ZáZk</td><td align="right">84&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2021-05-25</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">ICP</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=724758&amp;back=a">Seminář C++</a></td><td class="hide-m">V</td><td class="hide-m">Zá</td><td align="right">0&nbsp;&nbsp;</td><td><span class="red"><b>ne</b></span></td><td>-</td><td>4</td><td class="hide-m" nowrap="nowrap">2021-05-31</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">ID2L</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=753294&amp;back=a">Dějiny designu 2 - letní</a></td><td class="hide-m">V</td><td class="hide-m">Zk</td><td align="right">95&nbsp;&nbsp;</td><td>-</td><td><b>1A</b></td><td>3</td><td class="hide-m" nowrap="nowrap">2021-06-11</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">ITS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=753432&amp;back=a">Testování a dynamická analýza</a></td><td class="hide-m">V</td><td class="hide-m">ZáZk</td><td align="right">91&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>1A</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2021-05-20</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">VK2-N</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=753890&amp;back=a">Výtvarné techniky kresba 2</a></td><td class="hide-m">V</td><td class="hide-m">KlZá</td><td align="right">85&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2B</b></td><td>2</td><td class="hide-m" nowrap="nowrap">2021-06-01</td></tr>
+<tr><td colspan="9" style="border-left: 1px solid white; border-top: 1px solid #999; border-bottom: 1px solid #999; border-right: 1px solid white"><p></p><table class="stbl" style="float:left; margin-right: 8px; margin-bottom: 8px;"><tbody><tr><th>Kredity</th><th>&nbsp;P&nbsp;</th><th>&nbsp;V&nbsp;</th><th>Suma</th></tr>
+<tr><th align="left">Zapsané</th><td bgcolor="#ffdead" align="right">49</td><td bgcolor="#f7f7af" align="right">20</td><td align="right"><b>69</b></td></tr>
+<tr><th align="left">Získané</th><td bgcolor="#ffdead" align="right">49</td><td bgcolor="#f7f7af" align="right">16</td><td align="right"><b>65</b></td></tr></tbody></table><table class="stbl" style="min-width:300px"><tbody><tr><th align="left">Studijní průměr bez F</th><td>142,5/65 = 2,192</td></tr><tr><th align="left">Vážený studijní průměr</th><td>142,5/65 = 2,192</td></tr><tr><th align="left">SPbF zima</th><td>82/31 = 2,645<br>169. místo z&nbsp;178<br>(bez F, &gt;=20 kr.)</td></tr>
+<tr><th align="left">SPbF léto</th><td>60,5/34 = 1,779</td></tr>
+</tbody></table>&nbsp;<p style="page-break-before: always"></p></td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2021/2022, semestr zimní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IIS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767920&amp;back=a">Informační systémy</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">75&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>4</td><td class="hide-m" nowrap="nowrap">2022-01-10</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IMP</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767921&amp;back=a">Mikroprocesorové a vestavěné systémy</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">96&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>1A</b></td><td>6</td><td class="hide-m" nowrap="nowrap">2022-01-13</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IMS</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767922&amp;back=a">Modelování a simulace</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">73&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2022-01-20</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ISA</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767924&amp;back=a">Síťové aplikace a správa sítí</a></td><td class="hide-m">P</td><td class="hide-m">ZáZk</td><td align="right">71&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2022-01-04</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ITT</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767923&amp;back=a">Semestrální projekt</a></td><td class="hide-m">P</td><td class="hide-m">Zá</td><td align="right">75&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td>-</td><td>5</td><td class="hide-m" nowrap="nowrap">2022-01-27</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">ITU</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767925&amp;back=a">Tvorba uživatelských rozhraní</a></td><td class="hide-m">P</td><td class="hide-m">KlZá</td><td align="right">91&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td><b>1A</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2022-01-31</td></tr>
+<tr bgcolor="#ADD8E6"><th colspan="9" align="left"><h2>Ak. rok 2021/2022, semestr letní</h2></th></tr>
+<tr bgcolor="#ADD8E6" align="center"><th align="left">Zkr</th><th align="left">Předmět</th><th class="hide-m">Typ</th><th class="hide-m">Uk</th><th>Body</th><th>Záp</th><th>Zn</th><th>Kr</th><th class="hide-m">Datum</th></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IBT</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767926&amp;back=a">Bakalářská práce</a></td><td class="hide-m">P</td><td class="hide-m">Zá</td><td align="right">0&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td>-</td><td>13</td><td class="hide-m" nowrap="nowrap">2022-05-11</td></tr>
+<tr valign="top" bgcolor="#ffdead" align="center"><th align="left">IJA</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767927&amp;back=a">Seminář Java</a></td><td class="hide-m">PVT</td><td class="hide-m">Zá</td><td align="right">97&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td>-</td><td>4</td><td class="hide-m" nowrap="nowrap">2022-05-31</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">IDDL</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=790667&amp;back=a">Dějiny designu 1 - letní</a></td><td class="hide-m">V</td><td class="hide-m">Zk</td><td align="right">0&nbsp;&nbsp;</td><td>-</td><td><b>4F</b></td><td>3</td><td class="hide-m" nowrap="nowrap">2022-04-06</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">IPSO</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767919&amp;back=a">Pedagogická psychologie</a></td><td class="hide-m">V</td><td class="hide-m">Zk</td><td align="right">75&nbsp;&nbsp;</td><td>-</td><td><b>2C</b></td><td>5</td><td class="hide-m" nowrap="nowrap">2022-05-19</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">RET</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=767917&amp;back=a">Rétorika</a></td><td class="hide-m">V</td><td class="hide-m">Zá</td><td align="right">0&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td>-</td><td>3</td><td class="hide-m" nowrap="nowrap">2022-05-06</td></tr>
+<tr valign="top" bgcolor="#f7f7af" align="center"><th align="left">TV-SPSE</th><td align="left"><a class="bar" href="/Wis-Forever/FIT/st/course-sl.php.cs.html?id=788606&amp;back=a">Šerm</a></td><td class="hide-m">V</td><td class="hide-m">Zá</td><td align="right">0&nbsp;&nbsp;</td><td><span class="green"><b>ano</b></span></td><td>-</td><td>1</td><td class="hide-m" nowrap="nowrap">2022-05-10</td></tr>
+<tr><td colspan="9" style="border-left: 1px solid white; border-top: 1px solid #999; border-bottom: 1px solid white; border-right: 1px solid white"><p></p><table class="stbl" style="float:left; margin-right: 8px; margin-bottom: 8px;"><tbody><tr><th>Kredity</th><th>&nbsp;P&nbsp;</th><th>PVT</th><th>&nbsp;V&nbsp;</th><th>Suma</th></tr>
+<tr><th align="left">Zapsané</th><td bgcolor="#ffdead" align="right">43</td><td bgcolor="#ffdead" align="right">4</td><td bgcolor="#f7f7af" align="right">12</td><td align="right"><b>59</b></td></tr>
+<tr><th align="left">Získané</th><td bgcolor="#ffdead" align="right">43</td><td bgcolor="#ffdead" align="right">4</td><td bgcolor="#f7f7af" align="right">9</td><td align="right"><b>56</b></td></tr></tbody></table><table class="stbl" style="min-width:300px"><tbody><tr><th align="left">Studijní průměr bez F</th><td>49/30 = 1,633</td></tr><tr><th align="left">Vážený studijní průměr</th><td>61/33 = 1,848</td></tr><tr><th align="left">SPbF zima</th><td>39/25 = 1,56<br>37.-38. místo z&nbsp;236<br>(bez F, &gt;=20 kr.)</td></tr>
+<tr><th align="left">SPbF léto</th><td>10/5 = 2</td></tr>
+</tbody></table><p></p></td></tr></tbody></table></div><div style="max-width: 800px">
+ * - hodnocení nebylo zadáno do IS. Předměty, u kterých není nastaven 
+příznak udělení zápočtu nebo mají jiný systém hodnocení než FIT/FEKT a 
+není nastaven příznak absolvování (FP a jiné), mají limitovány body na 
+49.</div><hr size="1"><h3>Splnění podmínek absolvování studia</h3><table class="stbl" style="float:left; margin-right: 8px; margin-bottom: 8px;"><tbody><tr><th>Kredity</th><th>&nbsp;P&nbsp;</th><th>PVA</th><th>PVT</th><th>&nbsp;V&nbsp;</th><th>Suma</th></tr>
+<tr><th align="left">Zapsané</th><td bgcolor="#ffdead" align="right">146</td><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#ffdead" align="right">4</td><td bgcolor="#f7f7af" align="right">41</td><td align="right"><b>191</b></td></tr>
+<tr><th align="left">Získané</th><td bgcolor="#ffdead" align="right">146</td><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#ffdead" align="right">4</td><td bgcolor="#f7f7af" align="right">34</td><td align="right"><b>184</b></td></tr><tr><th align="left">Uznané</th><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#ffdead" align="right">3</td><td bgcolor="#ffdead" align="right">0</td><td bgcolor="#f7f7af" align="right">0</td><td align="right"><b>3</b></td></tr>
+<tr><th align="left">Suma</th><td bgcolor="#ffdead" align="right">146</td><td bgcolor="#ffdead" align="right">3</td><td bgcolor="#ffdead" align="right">4</td><td bgcolor="#f7f7af" align="right">34</td><td align="right"><b>187</b></td></tr><tr><th>Požadované</th><td colspan="3" bgcolor="#ffdead" align="center"><b>153</b></td><td bgcolor="#f7f7af" align="right"><b>27</b></td><td align="right"><b>180</b></td></tr></tbody></table><table class="stbl" style="min-width:300px"><tbody><tr><th align="left">Studijní průměr bez F</th><td>313,5/158 = 1,984</td></tr><tr><th align="left">Vážený studijní průměr</th><td>325,5/161 = <b>2,021</b></td></tr><tr><th align="left">VSP vč. uznaných</th><td>316,5/161 = 1,965</td></tr><tr><th align="left">SP vč. uznaných</th><td>328,5/164 = <b>2,003</b></td></tr></tbody></table><b>Umístění v ročníku oboru/specializace: 101. místo z&nbsp;427</b> (včetně uznaných předmětů)<br clear="all"><div style="max-width: 800px">Uvedené
+ počty požadovaných P+PV a V kreditů jsou orientační, protože limit 
+závisí na roku zahájení studia a způsobu absolvování povinné angličtiny.
+ Pro absolvování studia je třeba mít všechny P a splněny podmínky 
+absolvování skupin PV, doplněk pak dává minimální potřebný počet V.</div><p><b>Prominutí přijímací zkoušky do navazujícího magisterského studijního programu na FIT:</b></p><p>Kreditů za P předměty: 128, SPP = 272/128 = 2,125</p><p style="max-width: 800px"><b><span class="green">Dosažený studijní průměr postačuje k prominutí přijímací zkoušky do navazujícího magisterského programu bez žádosti.</span></b></p><p><a href="https://www.fit.vut.cz/fit/info/smernice/sm2018-13.pdf">Podmínka st.ř. FIT čl. 8</a> (min. 180 kreditů): <img src="/Wis-Forever/images/checkboxs.gif" alt="ano"></p><p><a href="https://www.fit.vut.cz/fit/info/predpisy/studzkradvut2018.pdf">Podmínka st.ř. FIT čl. 16</a> (absolvování povinných předmětů <a href="https://www.fit.vut.cz/study/study-plan/298/.cs">plánu 2021</a>): <img src="/Wis-Forever/images/checkboxs.gif" alt="ano"></p><p><a href="https://www.fit.vut.cz/fit/info/predpisy/studzkradvut2018.pdf">Podmínka st.ř. VUT čl. 5</a> (absolvování skupiny PV předmětů): </p><table cellspacing="0" cellpadding="2" border="0"><tbody><tr><th valign="top" align="left">PVA:</th><td valign="top" nowrap="nowrap">abs. BAN1-4 (3 kr.)</td><td valign="top"><img src="/Wis-Forever/images/checkboxs.gif" alt="ano"></td><td> (<b>BAN4</b>)</td></tr><tr><th valign="top" align="left">PVT:</th><td valign="top" nowrap="nowrap">min. 4 kr., získáno 4 kr.</td><td valign="top"><img src="/Wis-Forever/images/checkboxs.gif" alt="ano"></td><td> (<b>IJA</b>)</td></tr></tbody></table><p><b>Úroveň agličtiny z testu:</b> výsledky testu nemáme</p><h3>Státní závěrečná zkouška</h3><table class="res" cellpadding="2"><tbody><tr valign="top"><td class="dataquery" align="left">Bakalářská práce - obhajoba u SZZ 2022</td><td>-</td><td>0000-00-00</td></tr>
+<tr valign="top"><td>Státní závěrečná zkouška 2022 - ústní část</td><td>-</td><td>0000-00-00</td></tr><tr valign="top"><td align="left">Státní závěrečná zkouška - <b>celkový výsledek</b></td><td>-</td><td>0000-00-00</td></tr>
+<tr><th align="left">Celkové hodnocení studia</th><td colspan="2">-</td></tr></tbody></table>
+<p><a href="/study-faq.php.cs">FAQ k výsledkům studia</a></p></div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
