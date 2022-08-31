@@ -1,5 +1,5 @@
-# Wis-Forever
-Zakonzervovaná verze IS FIT
+# Wis Forever
+Zakonzervovaná verze [IS FIT VUT](https://wis.fit.vutbr.cz/FIT/)
 
 https://ss11mik.github.io//Wis-Forever/FIT/st/index.php.cs.html
 
