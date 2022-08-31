@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Přijaté, odmítnuté a odeslané dopisy</title>
+<link rel="SHORTCUT ICON" href="/Wis-Forever/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/Wis-Forever/common/style8.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+document.cookie = "res=w:"+screen.width+",h:"+screen.height+",r:"+window.devicePixelRatio+",p:"+navigator.platform+",tp:"+navigator.maxTouchPoints+"; path=/";
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)[.]? ([^ ]+) (\d{4})\s(\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+'\n '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" role="navigation" style="background-color: #3498db" cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/.cs"><img class="FITlogo" src="/Wis-Forever/images/fitnewz.png" alt="FIT"></a></td>
+<td class="mitembg" nowrap="nowrap"><a class="stab" href="/Wis-Forever/FIT/st/index.php.cs.html"><span style="font-size:24px;line-height:14px">&nbsp;&#8962;&nbsp;</span></a></td>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/study.php.cs.html">studia</a></th>
+<th class="mitem hide-m"><a class="stab" href="/Wis-Forever/FIT/st/courses.php.cs.html">předměty</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/study-v.php.cs.html">termíny</a></th>
+<th class="mitem"><a class="stab" href="/reg.php.cs">registrace</a></th>
+<th class="mitem"><a class="stabs" href="/Wis-Forever/FIT/st/admin.php.cs.html">hesla</a></th>
+<th class="mitem"><a class="stab" href="/Wis-Forever/FIT/st/other.php.cs.html">ostatní</a></th>
+<td class="mitembg hide-m"><a class="stab" href="/logoff.php.cs?logoff=1"><span style="font-size:16px;line-height:16px">&nbsp;&#9032;&nbsp;</span></a></td><th class="mitem"><a class="stab" href="/email-l.php.en">&nbsp;EN&nbsp;</a></th></tr>
+</tbody></table>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr valign="top"><td style="width: 90%"><h1>Přijaté, odmítnuté a odeslané dopisy</h1></td>
+<td style="text-align: right; white-space: nowrap"><div id="clock">28. května 2022
+ 12:39:04</div></td></tr></tbody></table>
+<div role="main" class="content">
+<form action="/Wis-Forever/FIT/st/email-l.php.cs" method="GET" name="repform" onsubmit="return filter_empty('repform')">
+Zavirované, nebezpečné, nevyžádané a podezřelé dopisy nejsou doručovány 
+adresátům. V následující tabulce je přehled odfiltrovaných dopisů na 
+vaši adresu za poslední měsíc.<p><b>Od data:</b> <input name="st" id="st" size="10" maxlength="10" value="2022-05-21" onchange="form_changed()" type="text">
+<input name="tab1_o" value="1" type="hidden">
+<input name="tab1_s" value="Nastavit filtr" class="noprint" type="submit">&nbsp;&nbsp;&nbsp;
+<input name="tab1_us" value="Zrušit filtr" class="noprint" type="submit">&nbsp;&nbsp;&nbsp;
+<br></p><div class="noprint">'*' ve filtru = a != reprezentuje libovolné znaky</div>
+<p></p><table cellpadding="2" bordercolor="#000000" border="1">
+<!--noindex-->
+<tbody><tr bgcolor="#add8e6" align="left">
+<th class="dataquery" id="tab1_th0" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?tab1_o=-1" name="tab_header_-1">+Důvod</a></th>
+<th class="dataquery" id="tab1_th1" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?tab1_o=2" name="tab_header_2">Počet</a></th>
+<th class="dataquery" id="tab1_th2" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?tab1_o=3" name="tab_header_3">24hod</a></th>
+<th class="dataquery" id="tab1_th3" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?tab1_o=4" name="tab_header_4">7dnů</a></th>
+</tr>
+<tr valign="top" bgcolor="#add8e6" align="left">
+<th align="left" nowrap="nowrap"><input onchange="form_changed()" class="forminput" name="tab1_f1" size="20" maxlength="32" type="text"><br>
+<select onchange="document.repform.tab1_s.click()" name="tab1_fo1" class="formselect">
+<option value="" selected="selected">~
+</option><option value="not like">!~
+</option><option value="=">=
+</option><option value="!=">!=
+</option></select>
+</th>
+<th align="left" nowrap="nowrap"><input onchange="form_changed()" class="forminput" name="tab1_f2" size="4" maxlength="32" type="text"><br>
+<select onchange="document.repform.tab1_s.click()" name="tab1_fo2" class="formselect">
+<option value="" selected="selected">=
+</option><option value="!=">!=
+</option><option value="&lt;">&lt;
+</option><option value="&gt;">&gt;
+</option><option value="&gt;=">&gt;=
+</option><option value="&lt;=">&lt;=
+</option></select>
+</th>
+<th align="left" nowrap="nowrap"><input onchange="form_changed()" class="forminput" name="tab1_f3" size="4" maxlength="32" type="text"><br>
+<select onchange="document.repform.tab1_s.click()" name="tab1_fo3" class="formselect">
+<option value="" selected="selected">=
+</option><option value="!=">!=
+</option><option value="&lt;">&lt;
+</option><option value="&gt;">&gt;
+</option><option value="&gt;=">&gt;=
+</option><option value="&lt;=">&lt;=
+</option></select>
+</th>
+<th align="left" nowrap="nowrap"><input onchange="form_changed()" class="forminput" name="tab1_f4" size="4" maxlength="32" type="text"><br>
+<select onchange="document.repform.tab1_s.click()" name="tab1_fo4" class="formselect">
+<option value="" selected="selected">=
+</option><option value="!=">!=
+</option><option value="&lt;">&lt;
+</option><option value="&gt;">&gt;
+</option><option value="&gt;=">&gt;=
+</option><option value="&lt;=">&lt;=
+</option></select>
+</th>
+</tr>
+<!--/noindex-->
+<tr valign="top" bgcolor="#fff8dc"><td class="dataquery" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?name=Mail+OK%3A+Received">Mail OK: Received</a></td><td class="dataquery" align="right">13</td><td class="dataquery" align="right">2</td><td class="dataquery" align="right">13</td></tr>
+<tr valign="top" bgcolor="#dfe7cf"><td class="dataquery" nowrap="nowrap"><a href="/Wis-Forever/FIT/st/email-l.php.cs.html?name=Mail+OK%3A+Sent">Mail OK: Sent</a></td><td class="dataquery" align="right">12</td><td class="dataquery" align="right">1</td><td class="dataquery" align="right">11</td></tr>
+<tr>
+<td class="dataquery" style="border-top: solid 1px #000000; color: black; background-color: #ADD8E6" align="left"><b>Celkem</b></td>
+<td class="dataquery" style="border-top: solid 1px #000000; color: black; background-color: #ADD8E6" align="right"><b>25</b></td>
+<td class="dataquery" style="border-top: solid 1px #000000; color: black; background-color: #ADD8E6" align="right"><b>3</b></td>
+<td class="dataquery" style="border-top: solid 1px #000000; color: black; background-color: #ADD8E6" align="right"><b>24</b></td>
+</tr>
+</tbody></table>
+<b>Počet druhů:</b> 2<p></p><p><a href="/Wis-Forever/FIT/st/index.php.cs.html">Zpět na index</a></p><hr size="1"><img src="/Wis-Forever/images/email-g.png" alt="statistika" height="300" width="560" border="0"><br clear="all"></form>
+
+
+
+<script type="text/javascript">
+form_change = false;
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+function form_changed()
+{
+var i;
+  if (!form_change)
+    for (i = 0; i < document.links.length; i++)
+      if (document.links[i].onclick == null && document.links[i].name.substring(0, 11) == "tab_header_")
+        document.links[i].onclick = check_change;
+  form_change = true;
+  return true;
+}
+
+function check_change()
+{
+  str = 'Některé pole ve formuláři nebo filtru bylo změněno.\nChcete seřadit tuto tabulku a změny zahodit?';
+  return confirm(str);
+}
+</script>
+
+
+</div>
+<div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT, Božetěchova 2, 612 00 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
